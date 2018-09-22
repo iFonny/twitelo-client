@@ -1,0 +1,62 @@
+{
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "bulma": "^0.7.1",
+    "bulma-extensions": "^1.0.2",
+    "compression": "^1.7.1",
+    "express": "^4.16.2",
+    "helmet": "^3.12.1",
+    "humps": "^2.0.1",
+    "next": "^6.1.1",
+    "next-redux-wrapper": "^2.0.0",
+    "next-routes": "^1.4.2",
+    "node-sass": "^4.9.3",
+    "normalize-scss": "^7.0.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "sass-loader": "^7.1.0",
+    "styled-jsx-css-loader": "^0.3.0"
+  },
+  "name": "nextjs-redux-starter",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-plugin-inline-dotenv": "^1.1.2",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "1.14.3",
+    "raf": "^3.4.0",
+    "rimraf": "^2.6.2"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production next build",
+    "start": "node server/index.js",
+    "prod": "NODE_ENV=production node server/index.js",
+    "clean": "rimraf node_modules/.cache .next",
+    "lint": "eslint 'src/**/*.js' --fix",
+    "now-start": "yarn serve"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "repository": "CodementorIO/nextjs-redux-starter",
+  "bugs": "https://github.com/CodementorIO/nextjs-redux-starter/issues",
+  "author": "Ian Wang <gogoenwon@gmail.com> (https://github.com/IanWang)",
+  "license": "ISC",
+  "description": "Opinionated Next.js starter with Express, Redux, SASS, and Jest."
+}
