@@ -2,9 +2,9 @@ import api from '../libs/api';
 import types from './actionTypes';
 import { setError } from './base';
 
-export function fetchNotifications() {
-  return dispatch => {
-    return api
+export function fetchUnarchivedNotifications() {
+  return dispatch =>
+    api
       .get(`/notification/me/unarchived/limit/100`)
       .then(response => response.data)
       .then(json =>
@@ -13,6 +13,5 @@ export function fetchNotifications() {
           payload: json.data,
         }),
       )
-      .catch(error => setError(error));
-  };
+      .catch(error => dispatch(setError(error)));
 }
