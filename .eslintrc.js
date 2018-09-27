@@ -3,6 +3,7 @@ module.exports = {
   rules: {
     'no-console': 0,
     'prettier/prettier': 'error',
+    'react/forbid-prop-types': 0,
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
@@ -12,5 +13,5 @@ module.exports = {
       },
     ],
   },
-  extends: ['airbnb', 'prettier'],
+  extends: ['airbnb', 'prettier', 'prettier/react'],
 };

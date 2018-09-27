@@ -1,3 +1,4 @@
 {
-  "locale": "fr"
+  "locale": "fr",
+  "navbar.login-with-twitter": "Se connecter avec Twitter"
 }

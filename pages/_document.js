@@ -43,9 +43,23 @@ export default class extends Document {
         <Head>
           {this.helmetJsx}
           {this.helmetHeadComponents}
+          <link
+            rel="stylesheet"
+            src="https://fonts.googleapis.com/css?family=Rubik"
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            src="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css"
+          />
+          <script
+            defer
+            src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+          />
         </Head>
         <body {...this.helmetBodyAttrComponents}>
           <style>{styles}</style>
+
           <Main />
           <NextScript />
         </body>
