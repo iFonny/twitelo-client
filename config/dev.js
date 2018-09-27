@@ -6,7 +6,7 @@ const config = {
     baseURL: 'http://localhost:4020',
   },
   api: {
-    baseURL: 'http://localhost:4020',
+    baseURL: 'http://localhost:4030',
   },
   db: {
     name: 'epitech_twitelo_dev',

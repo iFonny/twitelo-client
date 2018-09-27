@@ -6,7 +6,7 @@ const config = {
     baseURL: 'https://twitelo.en-f.eu',
   },
   api: {
-    baseURL: 'https://api.twitelo.en-f.eu',
+    baseURL: 'https://twitelo-api.en-f.eu',
   },
   db: {
     name: 'epitech_twitelo',

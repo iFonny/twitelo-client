@@ -5,3 +5,7 @@ node_modules/
 *.swo
 
 \.DS_Store
+
+config/secret\.json
+
+rethinkdb_data/

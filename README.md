@@ -1,1 +1,3 @@
-twitelo-client
+Need:
+
+- RethinkDB
