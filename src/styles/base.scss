@@ -100,8 +100,9 @@ $link-focus-border: $primary;
 $text: $white;
 $body-background-color: $black;
 
-// Import Bulma styles
+// Import Bulma and Buefy styles
 @import '~bulma';
+@import '~buefy/src/scss/buefy';
 
 // Import Bulma-extensions (https://wikiki.github.io/)
 @import '~bulma-extensions/bulma-slider/dist/bulma-slider';

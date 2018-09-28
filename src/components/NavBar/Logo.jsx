@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-const Login = (props, { router: { pathname } }) => (
-  <Link href="/">
-    <>
+const Logo = (props, { router: { pathname } }) => (
+  <Fragment>
+    <Link href="/">
       <a
         className={`navbar-item navbar-item-line navbar-item logo-twitelo ${pathname ===
           '/' && 'navbar-item-line-active'}`}
@@ -14,20 +14,20 @@ const Login = (props, { router: { pathname } }) => (
           Twitelo
         </span>
       </a>
-      <style jsx>{`
-        .logo-twitelo {
-          margin-left: auto;
-        }
-        .home-button {
-          margin-left: 5px;
-        }
-      `}</style>
-    </>
-  </Link>
+    </Link>
+    <style jsx>{`
+      .logo-twitelo {
+        margin-left: auto;
+      }
+      .home-button {
+        margin-left: 5px;
+      }
+    `}</style>
+  </Fragment>
 );
 
-Login.contextTypes = {
+Logo.contextTypes = {
   router: PropTypes.object.isRequired,
 };
 
-export default Login;
+export default Logo;

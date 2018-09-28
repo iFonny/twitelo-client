@@ -1,4 +1,11 @@
 {
   "locale": "fr",
-  "navbar.login-with-twitter": "Se connecter avec Twitter"
+  "navbar.close-popup": "Ferner",
+  "navbar.login-with-twitter": "Se connecter avec Twitter",
+  "navbar.settings": "Paramètres",
+  "navbar.builder": "Éditeur",
+  "navbar.builder.classic": "Classique",
+  "navbar.switch.tooltip": "Activer ou désactiver la modification automatique",
+  "navbar.user.about": "À propos",
+  "navbar.user.logout": "Se déconnecter"
 }

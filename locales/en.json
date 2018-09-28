@@ -1,4 +1,11 @@
 {
   "locale": "en",
-  "navbar.login-with-twitter": "Login with Twitter"
+  "navbar.close-popup": "Close",
+  "navbar.login-with-twitter": "Login with Twitter",
+  "navbar.settings": "Settings",
+  "navbar.builder": "Builder",
+  "navbar.builder.classic": "Classic",
+  "navbar.switch.tooltip": "Enable or disable auto-updater",
+  "navbar.user.about": "About me",
+  "navbar.user.logout": "Logout"
 }
