@@ -6,7 +6,7 @@ import Layout from '../src/components/Layout';
 import auth from '../src/libs/auth';
 
 class Home extends Component {
-  static async getInitialProps({ store, isServer, pathname, query, req }) {
+  static async getInitialProps({ store, isServer, req }) {
     if (isServer) await auth(store, req);
 
     return { test: store.getState() };
@@ -15,11 +15,6 @@ class Home extends Component {
   render() {
     return (
       <Layout>
-        <div>
-          {this.props.test.user
-            ? this.props.test.user.username
-            : 'PLEASE LOG IN'}
-        </div>
         <div>Coucou</div>
         <div>Coucou</div>
         <div>Coucou</div>

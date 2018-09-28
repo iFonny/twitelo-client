@@ -27,7 +27,7 @@ class Twitelo extends App {
     return (
       <Container>
         <Provider store={store}>
-          <I18n translations={translations}>
+          <I18n translations={translations} initialLang="en" fallbackLang="en">
             <Component {...pageProps} />
           </I18n>
         </Provider>

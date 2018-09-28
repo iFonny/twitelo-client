@@ -1,10 +1,9 @@
 {
   "locale": "fr",
-  "navbar.close-popup": "Ferner",
+  "navbar.close-popup": "Fermer",
   "navbar.login-with-twitter": "Se connecter avec Twitter",
   "navbar.settings": "Paramètres",
   "navbar.builder": "Éditeur",
-  "navbar.builder.classic": "Classique",
   "navbar.switch.tooltip": "Activer ou désactiver la modification automatique",
   "navbar.user.about": "À propos",
   "navbar.user.chat": "Chat",

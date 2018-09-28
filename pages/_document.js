@@ -52,10 +52,7 @@ export default class extends Document {
             type="text/css"
             src="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css"
           />
-          <script
-            defer
-            src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
-          />
+          <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" />
         </Head>
         <body {...this.helmetBodyAttrComponents}>
           <style>{styles}</style>

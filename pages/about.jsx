@@ -7,7 +7,7 @@ import Layout from '../src/components/Layout';
 import auth from '../src/libs/auth';
 
 class About extends Component {
-  static async getInitialProps({ store, isServer, pathname, query, req }) {
+  static async getInitialProps({ store, isServer, req }) {
     if (isServer) await auth(store, req);
 
     let stats = [];
@@ -29,8 +29,6 @@ class About extends Component {
     } = this.props;
     const { t } = this.context;
 
-    console.log(this.props);
-
     return (
       <Layout>
         <div className="container is-fluid about-page">
@@ -49,7 +47,7 @@ class About extends Component {
                 <span className="is-italic">
                   - nicolas.thouchkaieff@epitech.eu -
                 </span>
-                <a href="https://github.com/ifonny">
+                <a href="https://github.com/ifonny/twitelo-client">
                   <span className="icon-link has-text-link">
                     <i className="fab fa-github fa-lg" />
                   </span>
@@ -58,7 +56,7 @@ class About extends Component {
               <li>
                 <span className="has-text-weight-semibold">Gaetan Brignou</span>{' '}
                 <span className="is-italic">- gaetan.brignou@epitech.eu -</span>
-                <a href="https://github.com/ifonny">
+                <a href="https://github.com/ifonny/twitelo-client">
                   <span className="icon-link has-text-link">
                     <i className="fab fa-github fa-lg" />
                   </span>
@@ -131,6 +129,11 @@ class About extends Component {
 
 About.contextTypes = {
   t: PropTypes.func.isRequired,
+};
+
+About.propTypes = {
+  stats: PropTypes.object.isRequired,
+  i18nState: PropTypes.object.isRequired,
 };
 
 export default connect(state => state)(About);

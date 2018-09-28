@@ -3,15 +3,15 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const Chat = (props, { t, router: { pathname } }) => (
-  <Link href="/chat">
+  <Link href="/builder">
     <a
-      className={`navbar-item navbar-item-line navbar-item logo-twitelo ${pathname ===
-        '/chat' && 'navbar-item-line-active'}`}
+      className={`navbar-item navbar-item-line ${pathname === '/builder' &&
+        'navbar-item-line-active'}`}
     >
-      <span className="icon is-medium">
-        <i className="fas fa-lg fa-comments" />
+      <span className="icon is-medium has-text-light">
+        <i className="fas fa-lg fa-paint-brush" />
       </span>
-      <span className="menu-button">{t('navbar.user.chat')}</span>
+      <span className="menu-button">{t('navbar.builder')}</span>
     </a>
   </Link>
 );

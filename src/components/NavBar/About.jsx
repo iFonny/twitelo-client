@@ -8,7 +8,7 @@ const About = (props, { t, router: { pathname } }) => (
       className={`navbar-item navbar-item-line navbar-item logo-twitelo ${pathname ===
         '/about' && 'navbar-item-line-active'}`}
     >
-      <span className="icon is-medium has-text-info">
+      <span className="icon is-medium">
         <i className="fas fa-lg fa-info-circle" />
       </span>
       <span className="menu-button">{t('navbar.user.about')}</span>

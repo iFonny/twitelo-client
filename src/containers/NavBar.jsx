@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -8,6 +8,8 @@ import Burger from '../components/NavBar/Burger';
 import About from '../components/NavBar/About';
 import Chat from '../components/NavBar/Chat';
 import Locale from '../components/NavBar/Locale';
+import User from '../components/NavBar/User';
+import Builder from '../components/NavBar/Builder';
 
 const NavBar = ({ user }) => (
   <header>
@@ -16,7 +18,7 @@ const NavBar = ({ user }) => (
         {user ? (
           <Fragment>
             <User customClass="is-hidden-desktop" />
-            <SwitchToggle customClass="is-hidden-desktop" />
+            {/* <SwitchToggle customClass="is-hidden-desktop" /> */}
           </Fragment>
         ) : (
           <Login customClass="is-hidden-desktop" />
@@ -34,6 +36,7 @@ const NavBar = ({ user }) => (
           <Fragment>
             <Builder />
             <Chat />
+            <About />
           </Fragment>
         ) : (
           <About />
@@ -42,14 +45,13 @@ const NavBar = ({ user }) => (
       <div className="navbar-end">
         {user ? (
           <Fragment>
-            <SwitchToggle />
-            <Settings />
+            {/* <SwitchToggle customClass="is-hidden-touch" /> */}
           </Fragment>
         ) : (
           <Login customClass="is-hidden-touch" />
         )}
         <Locale />
-        {user && <User />}
+        {user && <User customClass="is-hidden-touch" />}
       </div>
     </nav>
     <style jsx>{`

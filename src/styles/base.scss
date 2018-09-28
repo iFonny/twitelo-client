@@ -110,7 +110,7 @@ $body-background-color: $black;
 @import '~bulma-extensions/bulma-timeline/dist/bulma-timeline';
 @import '~bulma-extensions/bulma-badge/dist/bulma-badge';
 
-/* Overwrite bulma */
+// Overwrite bulma
 .background-image {
   position: fixed;
   top: 0;
@@ -169,7 +169,7 @@ select {
   color: white;
 }
 
-/* Overwrite steps */
+// Overwrite steps
 .steps .step-item .step-marker,
 .steps .step-item.is-active .step-marker {
   background: #363636;
@@ -179,7 +179,7 @@ select {
   background: #b5b2b2;
 }
 
-/* Overwrite pagination colors */
+// Overwrite pagination colors
 .pagination-previous,
 .pagination-next,
 .pagination-link {
@@ -207,7 +207,7 @@ select {
   background-color: #222121;
 }
 
-/* Overwrite dropdown */
+// Overwrite dropdown
 .dropdown-content {
   background-color: rgba(54, 54, 54, 0.98);
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
@@ -216,7 +216,7 @@ a.dropdown-item:hover {
   background-color: #454545;
 }
 
-/* Overwrite modal */
+// Overwrite modal
 .modal-card-head,
 .modal-card-foot {
   background-color: #353535;
@@ -228,7 +228,7 @@ a:hover {
   color: #81d29d;
 }
 
-/* Overwrite card */
+// Overwrite card
 .card {
   background: unset;
   box-shadow: unset;
@@ -242,12 +242,12 @@ a:hover {
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
 }
 
-/* Font */
+// Font
 body {
   font-family: Rubik;
 }
 
-/* Switch green/red */
+// Switch green/red
 .switch:hover input[type='checkbox'] + .check {
   background: #df4343 !important;
   box-shadow: none !important;
@@ -265,7 +265,7 @@ body {
   box-shadow: none !important;
 }
 
-/* Perso */
+// Perso
 .footer.is-fixed-bottom {
   left: 0;
   position: fixed;
