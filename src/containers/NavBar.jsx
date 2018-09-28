@@ -6,6 +6,7 @@ import Login from '../components/NavBar/Login';
 import Logo from '../components/NavBar/Logo';
 import Burger from '../components/NavBar/Burger';
 import About from '../components/NavBar/About';
+import Chat from '../components/NavBar/Chat';
 import Locale from '../components/NavBar/Locale';
 
 const NavBar = ({ user }) => (

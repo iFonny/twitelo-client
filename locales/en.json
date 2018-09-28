@@ -6,6 +6,7 @@
   "navbar.builder": "Builder",
   "navbar.builder.classic": "Classic",
   "navbar.switch.tooltip": "Enable or disable auto-updater",
-  "navbar.user.about": "About me",
+  "navbar.user.about": "About",
+  "navbar.user.chat": "Chat",
   "navbar.user.logout": "Logout"
 }

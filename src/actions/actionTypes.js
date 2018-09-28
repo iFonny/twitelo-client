@@ -4,7 +4,4 @@ export default {
 
   // User
   SET_USER: 'SET_USER',
-
-  // Notifications
-  SET_NOTIFICATIONS: 'SET_NOTIFICATIONS',
 };
