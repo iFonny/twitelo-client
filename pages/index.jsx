@@ -20,6 +20,24 @@ class Home extends Component {
             ? this.props.test.user.username
             : 'PLEASE LOG IN'}
         </div>
+        <div>Coucou</div>
+        <div>Coucou</div>
+        <div>Coucou</div>
+        <div>Coucou</div>
+        <div>Coucou</div>
+        <div>Coucou</div>
+        <div>Coucou</div>
+        <div>Coucou</div>
+
+        <Link href="/test">
+          <a>Test</a>
+        </Link>
+        <Link href="/test">
+          <a>Test</a>
+        </Link>
+        <Link href="/test">
+          <a>Test</a>
+        </Link>
         <Link href="/test">
           <a>Test</a>
         </Link>

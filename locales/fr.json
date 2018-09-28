@@ -8,5 +8,8 @@
   "navbar.switch.tooltip": "Activer ou désactiver la modification automatique",
   "navbar.user.about": "À propos",
   "navbar.user.chat": "Chat",
-  "navbar.user.logout": "Se déconnecter"
+  "navbar.user.logout": "Se déconnecter",
+  "about": "À propos",
+  "about.contributors": "Contributeurs",
+  "about.stats": "Statistiques"
 }
