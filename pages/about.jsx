@@ -47,7 +47,7 @@ class About extends Component {
                 <span className="is-italic">
                   - nicolas.thouchkaieff@epitech.eu -
                 </span>
-                <a href="https://github.com/ifonny/twitelo-client">
+                <a href="https://github.com/ifonny">
                   <span className="icon-link has-text-link">
                     <i className="fab fa-github fa-lg" />
                   </span>
@@ -56,7 +56,37 @@ class About extends Component {
               <li>
                 <span className="has-text-weight-semibold">Gaetan Brignou</span>{' '}
                 <span className="is-italic">- gaetan.brignou@epitech.eu -</span>
-                <a href="https://github.com/ifonny/twitelo-client">
+                <a href="https://github.com/GaetanBrignou">
+                  <span className="icon-link has-text-link">
+                    <i className="fab fa-github fa-lg" />
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </section>
+          {/* Github */}
+          <section className="has-text-centered">
+            <p className="is-size-3 has-text-weight-bold has-text-centered">
+              Github
+            </p>
+            <ul className="is-size-5">
+              <li>
+                <span className="has-text-weight-semibold">Server</span>{' '}
+                <a href="https://github.com/iFonny/twitelo-server">
+                  <span className="is-italic">
+                    - github.com/iFonny/twitelo-server -
+                  </span>
+                  <span className="icon-link has-text-link">
+                    <i className="fab fa-github fa-lg" />
+                  </span>
+                </a>
+              </li>
+              <li>
+                <span className="has-text-weight-semibold">Client</span>{' '}
+                <a href="https://github.com/iFonny/twitelo-client">
+                  <span className="is-italic">
+                    - github.com/iFonny/twitelo-client -
+                  </span>
                   <span className="icon-link has-text-link">
                     <i className="fab fa-github fa-lg" />
                   </span>
@@ -132,7 +162,7 @@ About.contextTypes = {
 };
 
 About.propTypes = {
-  stats: PropTypes.object.isRequired,
+  stats: PropTypes.array.isRequired,
   i18nState: PropTypes.object.isRequired,
 };
 
