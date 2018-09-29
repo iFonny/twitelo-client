@@ -5,7 +5,7 @@ import Layout from '../src/components/Layout';
 import auth from '../src/libs/auth';
 
 class Page extends Component {
-  static async getInitialProps({ store, isServer, pathname, query, req }) {
+  static async getInitialProps({ store, isServer, req }) {
     if (isServer) await auth(store, req);
 
     return {};

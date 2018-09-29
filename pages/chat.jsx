@@ -6,7 +6,7 @@ import Layout from '../src/components/Layout';
 import auth from '../src/libs/auth';
 
 class Chat extends Component {
-  static async getInitialProps({ store, isServer, pathname, query, req, res }) {
+  static async getInitialProps({ store, isServer, req, res }) {
     if (isServer) await auth(store, req);
 
     const { user } = store.getState();
