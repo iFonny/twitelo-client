@@ -104,6 +104,7 @@ $body-background-color: $black;
 // Import Bulma and Buefy styles
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
+@import '~react-toastify/scss/main';
 
 // Import Bulma-extensions (https://wikiki.github.io/)
 @import '~bulma-extensions/bulma-slider/dist/bulma-slider';

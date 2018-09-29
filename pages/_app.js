@@ -3,8 +3,9 @@ import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
 import I18n from 'redux-i18n';
 import withRedux from 'next-redux-wrapper';
-import makeStore from '../src/store/createStore';
+import { ToastContainer } from 'react-toastify';
 
+import makeStore from '../src/store/createStore';
 import styleSheet from '../src/styles/base.scss';
 
 import transFR from '../locales/fr';
@@ -31,6 +32,7 @@ class Twitelo extends App {
         <Provider store={store}>
           <I18n translations={translations} initialLang="en" fallbackLang="en">
             <Component {...pageProps} />
+            <ToastContainer autoClose={5000} />
           </I18n>
         </Provider>
         <style jsx global>

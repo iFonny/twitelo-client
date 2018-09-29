@@ -10,6 +10,7 @@ import Chat from '../components/NavBar/Chat';
 import Locale from '../components/NavBar/Locale';
 import User from '../components/NavBar/User';
 import Builder from '../components/NavBar/Builder';
+import SwitchToggle from '../components/NavBar/SwitchToggle';
 
 const NavBar = ({ user }) => (
   <header>
@@ -18,7 +19,7 @@ const NavBar = ({ user }) => (
         {user ? (
           <Fragment>
             <User customClass="is-hidden-desktop" />
-            {/* <SwitchToggle customClass="is-hidden-desktop" /> */}
+            <SwitchToggle customClass="is-hidden-desktop" />
           </Fragment>
         ) : (
           <Login customClass="is-hidden-desktop" />
@@ -45,7 +46,7 @@ const NavBar = ({ user }) => (
       <div className="navbar-end">
         {user ? (
           <Fragment>
-            {/* <SwitchToggle customClass="is-hidden-touch" /> */}
+            <SwitchToggle customClass="is-hidden-touch" />
           </Fragment>
         ) : (
           <Login customClass="is-hidden-touch" />

@@ -38,7 +38,7 @@ export default class extends Document {
 
   render() {
     return (
-      <html {...this.helmetHtmlAttrComponents} class="has-navbar-fixed-top">
+      <html {...this.helmetHtmlAttrComponents} className="has-navbar-fixed-top">
         <Head>
           {this.helmetJsx}
           {this.helmetHeadComponents}

@@ -21,11 +21,6 @@ class Home extends Component {
         <div>Coucou</div>
         <div>Coucou</div>
         <div>Coucou</div>
-        <label className="switch is-medium">
-          <input type="checkbox" true-value="true" value="false" />
-          <span className="check is-success" />
-          <span className="control-label" />
-        </label>
         <div>Coucou</div>
         <div>Coucou</div>
         <div>Coucou</div>

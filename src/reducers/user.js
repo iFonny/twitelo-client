@@ -7,6 +7,15 @@ export default function(state = initialState, action) {
     case types.SET_USER:
       return { ...action.payload };
 
+    case types.SET_USER_SWITCH:
+      return { ...state, switch: action.payload };
+
+    case types.SET_USER_LANG:
+      return {
+        ...state,
+        settings: { ...state.settings, locale: action.payload },
+      };
+
     default:
       return state;
   }
