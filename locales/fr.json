@@ -10,5 +10,15 @@
   "navbar.user.logout": "Se déconnecter",
   "about": "À propos",
   "about.contributors": "Contributeurs",
-  "about.stats": "Statistiques"
+  "about.stats": "Statistiques",
+  "error": "Erreur",
+  "error.page-not-found": "Cette page n'a pas pu être trouvée",
+  "error.forbidden": "Vous n'êtes pas connecté.",
+  "error.gateway-time-out": "Le serveur n'a pas répondu.",
+  "error.service-unavailable": "Service temporairement indisponible ou en maintenance.",
+  "error.internal-server-error": "Erreur interne du serveur.",
+  "error.login-error-title": "Erreur d'identification",
+  "error.login-error-text": "Veuillez réessayer ou contactez un administrateur.",
+  "error.back-home": "Retour à la page d'accueil",
+  "error.unknown-error": "Une erreur est survenue"
 }

@@ -60,15 +60,13 @@ class NavBar extends Component {
           </div>
           <Burger customClass="is-hidden-desktop" isActiveClass={isActive} />
           <div className="navbar-start">
-            {user ? (
+            {user && (
               <Fragment>
                 <Builder customClass="is-hidden-touch" />
                 <Chat customClass="is-hidden-touch" />
-                <About customClass="is-hidden-touch" />
               </Fragment>
-            ) : (
-              <About />
             )}
+            <About customClass="is-hidden-touch" />
           </div>
           <div className="navbar-end">
             {user ? (

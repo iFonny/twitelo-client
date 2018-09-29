@@ -10,5 +10,15 @@
   "navbar.user.logout": "Logout",
   "about": "About",
   "about.contributors": "Contributors",
-  "about.stats": "Statistics"
+  "about.stats": "Statistics",
+  "error": "Error",
+  "error.page-not-found": "Page not found.",
+  "error.forbidden": "You are not connected.",
+  "error.gateway-time-out": "Gateway Time-out",
+  "error.service-unavailable": "Service Unavailable",
+  "error.internal-server-error": "Internal Server Error",
+  "error.login-error-title": "Login error",
+  "error.login-error-text": "Please try again or contact an administrator.",
+  "error.back-home": "Home page",
+  "error.unknown-error": "An error occurred."
 }
