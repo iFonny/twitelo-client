@@ -5,6 +5,8 @@ import I18n from 'redux-i18n';
 import withRedux from 'next-redux-wrapper';
 import makeStore from '../src/store/createStore';
 
+import styleSheet from '../src/styles/base.scss';
+
 import transFR from '../locales/fr';
 import transEN from '../locales/en';
 
@@ -31,6 +33,9 @@ class Twitelo extends App {
             <Component {...pageProps} />
           </I18n>
         </Provider>
+        <style jsx global>
+          {styleSheet}
+        </style>
       </Container>
     );
   }
