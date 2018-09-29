@@ -1,8 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setLanguage } from 'redux-i18n';
 
+import { setLanguage } from 'redux-i18n';
 import { setUserLang } from '../../actions/user';
 
 class Locale extends Component {
@@ -21,12 +21,12 @@ class Locale extends Component {
   }
 
   render() {
-    const { currentLocale, locales } = this.props;
+    const { customClass, currentLocale, locales } = this.props;
     const myLocales = locales.filter(locale => currentLocale !== locale);
 
     return (
       <Fragment>
-        <div className="dropdown dropdown-locale is-hoverable">
+        <div className={`dropdown dropdown-locale is-hoverable ${customClass}`}>
           <div role="button" className="dropdown-trigger">
             <a className="navbar-item navbar-item-no-bg no-select">
               <img src={`/images/locales/${currentLocale}.png`} alt="locale" />
@@ -88,6 +88,7 @@ class Locale extends Component {
 
 Locale.propTypes = {
   user: PropTypes.object,
+  customClass: PropTypes.string,
   currentLocale: PropTypes.string.isRequired,
   locales: PropTypes.array.isRequired,
   onLangClick: PropTypes.func.isRequired,
@@ -96,6 +97,7 @@ Locale.propTypes = {
 
 Locale.defaultProps = {
   user: null,
+  customClass: '',
 };
 
 const mapStateToProps = state => ({
