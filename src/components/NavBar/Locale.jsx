@@ -1,6 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { setLanguage } from 'redux-i18n';
+
 import { setUserLang } from '../../actions/user';
 
 class Locale extends Component {
@@ -11,10 +13,11 @@ class Locale extends Component {
   }
 
   handleLangChange(e, locale) {
-    const { onLangClick } = this.props;
+    const { onLangClick, onLangClickNoUser, user } = this.props;
 
     e.preventDefault();
-    onLangClick(locale);
+    if (user) onLangClick(locale);
+    else onLangClickNoUser(locale);
   }
 
   render() {
@@ -84,9 +87,15 @@ class Locale extends Component {
 }
 
 Locale.propTypes = {
+  user: PropTypes.object,
   currentLocale: PropTypes.string.isRequired,
   locales: PropTypes.array.isRequired,
   onLangClick: PropTypes.func.isRequired,
+  onLangClickNoUser: PropTypes.func.isRequired,
+};
+
+Locale.defaultProps = {
+  user: null,
 };
 
 const mapStateToProps = state => ({
@@ -96,5 +105,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { onLangClick: setUserLang },
+  { onLangClick: setUserLang, onLangClickNoUser: setLanguage },
 )(Locale);
