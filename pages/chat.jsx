@@ -11,6 +11,7 @@ class Chat extends Component {
 
     const { user } = store.getState();
 
+    // Check if auth (if not: redirect home)
     if (!user) {
       if (res) {
         res.writeHead(302, {

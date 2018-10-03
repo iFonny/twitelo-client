@@ -5,7 +5,12 @@ import Layout from '../src/components/Layout';
 
 import auth from '../src/libs/auth';
 
-import { fetchBuilderData, transformFromUUID } from '../src/actions/builder';
+import {
+  fetchBuilderData,
+  transformFromUUID,
+  updateTextCounters,
+  refreshPreview,
+} from '../src/actions/builder';
 
 class Builder extends Component {
   static async getInitialProps({ store, isServer, req, res }) {
@@ -13,6 +18,7 @@ class Builder extends Component {
 
     const { user, builder } = store.getState();
 
+    // Check if auth (if not: redirect home)
     if (!user) {
       if (res) {
         res.writeHead(302, {
@@ -22,14 +28,11 @@ class Builder extends Component {
       } else {
         Router.push('/');
       }
-    }
-
-    if (Object.keys(builder.games).length <= 0) {
+    } else if (Object.keys(builder.games).length <= 0) {
       await store.dispatch(fetchBuilderData());
       await store.dispatch(transformFromUUID(user.twitelo, builder));
-      // TODO: CONTINUER
-      //await store.dispatch('builder/updateTextCounters');
-      //await store.dispatch('builder/refreshPreview');
+      await store.dispatch(updateTextCounters(builder));
+      await store.dispatch(refreshPreview(user.twitelo, builder));
     }
 
     return {};

@@ -16,6 +16,12 @@ export default function(state = initialState, action) {
         settings: { ...state.settings, locale: action.payload },
       };
 
+    case types.SET_TWITELO_DATA:
+      return {
+        ...state,
+        twitelo: action.payload,
+      };
+
     default:
       return state;
   }

@@ -61,6 +61,50 @@ export default function(state = initialState, action) {
         twiteloDataInput: action.payload,
       };
 
+    case types.SET_TEXT_COUNTER:
+      return {
+        ...state,
+        textCounter: {
+          ...state.textCounter,
+          [action.payload.name]: action.payload.value,
+        },
+      };
+
+    case types.SET_PREVIEW_DATA:
+      return {
+        ...state,
+        preview: {
+          ...state.preview,
+          [action.payload.name]: action.payload.value,
+        },
+      };
+
+    case types.SET_PREVIEW_PROFILE:
+      return {
+        ...state,
+        preview: {
+          ...state.preview,
+          name: action.payload.name.replace(
+            /<{(.+?)}>/g,
+            '<span class="tag is-cyan">$1</span>',
+          ),
+          description: action.payload.description.replace(
+            /<{(.+?)}>/g,
+            '<span class="tag is-cyan">$1</span>',
+          ),
+          location: action.payload.location.replace(
+            /<{(.+?)}>/g,
+            '<span class="tag is-cyan">$1</span>',
+          ),
+        },
+      };
+
+    case types.SET_BUILDER_LOADING:
+      return {
+        ...state,
+        builderLoading: action.payload,
+      };
+
     case types.SET_USER_TAG_NOT_INCLUDED:
       return {
         ...state,
