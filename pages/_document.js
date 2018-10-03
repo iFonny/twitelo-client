@@ -44,14 +44,11 @@ export default class extends Document {
           {this.helmetHeadComponents}
           <link
             rel="stylesheet"
-            src="https://fonts.googleapis.com/css?family=Rubik"
-          />
-          <link
-            rel="stylesheet"
             type="text/css"
             src="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css"
           />
           <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" />
+          <style>{`body {font-family: sans-serif}`}</style>
         </Head>
         <body {...this.helmetBodyAttrComponents}>
           <Main />

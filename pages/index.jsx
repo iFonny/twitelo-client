@@ -9,6 +9,7 @@ import api from '../src/libs/api';
 
 import GameList from '../src/components/Home/GameList';
 import FooterHome from '../src/components/Home/FooterHome';
+import Example from '../src/components/Home/Example';
 
 class Home extends Component {
   static async getInitialProps({ store, isServer, req }) {
@@ -39,6 +40,7 @@ class Home extends Component {
     return (
       <Layout>
         <SiteDescription />
+        <Example />
         <GameList gamesList={gamesList} />
         <FooterHome latestUsers={latestUsers} />
       </Layout>
