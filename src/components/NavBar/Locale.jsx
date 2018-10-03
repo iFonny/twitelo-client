@@ -101,6 +101,7 @@ Locale.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+  user: state.user,
   currentLocale: state.i18nState.lang,
   locales: state.base.locales,
 });
