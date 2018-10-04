@@ -38,11 +38,7 @@ ListItem.propTypes = {
 
 const GameList = ({ games, onSelectGame }) => {
   const listItems = Object.keys(games).map(key => (
-    <ListItem
-      key={games[key].id.toString()}
-      game={games[key]}
-      onSelectGame={onSelectGame}
-    />
+    <ListItem key={games[key].id.toString()} game={games[key]} onSelectGame={onSelectGame} />
   ));
 
   return <div className="game-list">{listItems}</div>;
@@ -139,10 +135,7 @@ class GameSelect extends Component {
                         type="button"
                         className="delete game-selection-cancel"
                       />
-                      <SelectedGame
-                        game={selectedGame}
-                        onSelectGame={onSelectGame}
-                      />
+                      <SelectedGame game={selectedGame} onSelectGame={onSelectGame} />
                     </Fragment>
                   ) : (
                     <GameList games={games} onSelectGame={onSelectGame} />

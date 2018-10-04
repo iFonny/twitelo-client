@@ -4,6 +4,7 @@ import Router from 'next/router';
 
 import Layout from '../src/components/Layout';
 import GameSelect from '../src/components/Builder/GameSelect';
+import InputBuilder from '../src/components/Builder/InputBuilder';
 
 import auth from '../src/libs/auth';
 
@@ -18,7 +19,7 @@ class Builder extends Component {
   static async getInitialProps({ store, isServer, req, res }) {
     if (isServer) await auth(store, req);
 
-    const { user, builder } = store.getState();
+    let { user, builder } = store.getState();
 
     // Check if auth (if not: redirect home)
     if (!user) {
@@ -32,8 +33,11 @@ class Builder extends Component {
       }
     } else if (Object.keys(builder.games).length <= 0) {
       await store.dispatch(fetchBuilderData());
+      ({ user, builder } = store.getState());
       await store.dispatch(transformFromUUID(user.twitelo, builder));
+      ({ user, builder } = store.getState());
       await store.dispatch(updateTextCounters(builder));
+      ({ user, builder } = store.getState());
       await store.dispatch(refreshPreview(user.twitelo, builder));
     }
 
@@ -47,6 +51,16 @@ class Builder extends Component {
           <div className="tile is-ancestor">
             <div className="tile is-parent top-tile">
               <GameSelect />
+            </div>
+          </div>
+
+          <div className="tile is-ancestor">
+            <div className="tile is-parent top-tile left-tile">
+              <accounts />
+            </div>
+
+            <div className="tile is-parent is-7 top-tile right-tile">
+              <InputBuilder />
             </div>
           </div>
         </div>

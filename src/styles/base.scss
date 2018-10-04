@@ -261,6 +261,11 @@ a:hover {
   background: #3eca6f !important;
   box-shadow: none !important;
 }
+.switch.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #7a7a7a;
+}
 
 // Perso
 .footer.is-fixed-bottom {

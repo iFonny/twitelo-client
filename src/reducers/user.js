@@ -10,6 +10,18 @@ export default function(state = initialState, action) {
     case types.SET_USER_SWITCH:
       return { ...state, switch: action.payload };
 
+    case types.SET_USER_TWITELO_SWITCH:
+      return {
+        ...state,
+        twitelo: {
+          ...state.twitelo,
+          [action.payload.name]: {
+            ...state.twitelo[action.payload.name],
+            status: action.payload.status,
+          },
+        },
+      };
+
     case types.SET_USER_LANG:
       return {
         ...state,

@@ -17,6 +17,19 @@ export function setUserSwitch(mySwitch) {
       .catch(error => dispatch(setError(error)));
 }
 
+export function setUserTwiteloSwitch(name, status) {
+  return dispatch =>
+    api
+      .post(`/setting/me/switch/twitelo/${name}/${+status}`)
+      .then(() =>
+        dispatch({
+          type: types.SET_USER_TWITELO_SWITCH,
+          payload: { name, status },
+        }),
+      )
+      .catch(error => dispatch(setError(error)));
+}
+
 export function setUserLang(locale) {
   return dispatch => {
     dispatch(setLanguage(locale));

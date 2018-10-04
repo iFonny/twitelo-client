@@ -4,6 +4,20 @@ import types from './actionTypes';
 import api from '../libs/api';
 import { setError } from './base';
 
+export function setTwiteloDataInput(name, value) {
+  return {
+    type: types.SET_TWITELO_DATA_INPUT,
+    payload: { name, value },
+  };
+}
+
+export function setPreviewData(name, value) {
+  return {
+    type: types.SET_PREVIEW_DATA,
+    payload: { name, value },
+  };
+}
+
 export function fetchBuilderData() {
   return async dispatch => {
     try {
@@ -95,17 +109,13 @@ export function updateTextCounters(builder, name) {
         let match = myRegexp.exec(newText);
 
         while (match != null) {
-          if (builder.userTags[match[1]])
-            counter += builder.userTags[match[1]].size;
+          if (builder.userTags[match[1]]) counter += builder.userTags[match[1]].size;
           removeArray.push(`<{${match[1]}}>`);
           match = myRegexp.exec(newText);
         }
 
         if (removeArray.length > 0) {
-          const re = new RegExp(
-            removeArray.join('|').replace(/{/g, '\\{'),
-            'g',
-          );
+          const re = new RegExp(removeArray.join('|').replace(/{/g, '\\{'), 'g');
           newText = newText.replace(re, '');
         }
 
@@ -118,19 +128,16 @@ export function updateTextCounters(builder, name) {
           type: types.SET_TEXT_COUNTER,
           payload: {
             name,
-            value:
-              builder.twitterLimits[name] -
-              getTextLength(builder.twiteloDataInput[name]),
+            value: builder.twitterLimits[name] - getTextLength(builder.twiteloDataInput[name]),
           },
         });
       }
+
       dispatch({
         type: types.SET_TEXT_COUNTER,
         payload: {
           name: 'name',
-          value:
-            builder.twitterLimits.name -
-            getTextLength(builder.twiteloDataInput.name),
+          value: builder.twitterLimits.name - getTextLength(builder.twiteloDataInput.name),
         },
       });
       dispatch({
@@ -138,17 +145,14 @@ export function updateTextCounters(builder, name) {
         payload: {
           name: 'description',
           value:
-            builder.twitterLimits.description -
-            getTextLength(builder.twiteloDataInput.description),
+            builder.twitterLimits.description - getTextLength(builder.twiteloDataInput.description),
         },
       });
       return dispatch({
         type: types.SET_TEXT_COUNTER,
         payload: {
           name: 'location',
-          value:
-            builder.twitterLimits.location -
-            getTextLength(builder.twiteloDataInput.location),
+          value: builder.twitterLimits.location - getTextLength(builder.twiteloDataInput.location),
         },
       });
     } catch (error) {
@@ -199,18 +203,9 @@ export function transformFromUUID(twiteloUser, builder) {
       });
 
       const transformed = {
-        name: replaceFromUUID(
-          twiteloUser.name.content.trim(),
-          builder.userTags,
-        ),
-        description: replaceFromUUID(
-          twiteloUser.description.content.trim(),
-          builder.userTags,
-        ),
-        location: replaceFromUUID(
-          twiteloUser.location.content.trim(),
-          builder.userTags,
-        ),
+        name: replaceFromUUID(twiteloUser.name.content.trim(), builder.userTags),
+        description: replaceFromUUID(twiteloUser.description.content.trim(), builder.userTags),
+        location: replaceFromUUID(twiteloUser.location.content.trim(), builder.userTags),
       };
       console.log('(all) transform <{12a65b}> -> <{1}>');
       return dispatch({
@@ -343,6 +338,69 @@ export function refreshPreview(twiteloUser, builder) {
           value: false,
         },
       });
+      return dispatch({
+        type: types.SET_BUILDER_LOADING,
+        payload: false,
+      });
+    } catch (error) {
+      return dispatch(setError(error));
+    }
+  };
+}
+
+export function saveProfile(twiteloUser, builder) {
+  return async dispatch => {
+    try {
+      // start loadings
+      dispatch({
+        type: types.SET_PREVIEW_DATA,
+        payload: {
+          name: 'loading',
+          value: true,
+        },
+      });
+      dispatch({
+        type: types.SET_BUILDER_LOADING,
+        payload: true,
+      });
+
+      await dispatch(transformToUUID(twiteloUser, builder));
+
+      const preview = (await api.post(`/user/me/save/profile`, {
+        name: twiteloUser.name.content,
+        description: twiteloUser.description.content,
+        location: twiteloUser.location.content,
+      })).data.data;
+
+      // Update preview text
+      dispatch({
+        type: types.SET_PREVIEW_PROFILE,
+        payload: preview,
+      });
+
+      // Stop loadings
+      dispatch({
+        type: types.SET_PREVIEW_DATA,
+        payload: {
+          name: 'loading',
+          value: false,
+        },
+      });
+      dispatch({
+        type: types.SET_PREVIEW_DATA,
+        payload: {
+          name: 'needUpdate',
+          value: false,
+        },
+      });
+      dispatch({
+        type: types.SET_PREVIEW_DATA,
+        payload: {
+          name: 'saved',
+          value: true,
+        },
+      });
+
       return dispatch({
         type: types.SET_BUILDER_LOADING,
         payload: false,

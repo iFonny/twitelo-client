@@ -64,6 +64,15 @@ export default function(state = initialState, action) {
         accounts: _.groupBy(state.allAccounts, 'game_id'),
       };
 
+    case types.SET_TWITELO_DATA_INPUT:
+      return {
+        ...state,
+        twiteloDataInput: {
+          ...state.twiteloDataInput,
+          [action.payload.name]: action.payload.value,
+        },
+      };
+
     case types.SET_TWITELO_DATA_INPUT_ALL:
       return {
         ...state,
@@ -93,10 +102,7 @@ export default function(state = initialState, action) {
         ...state,
         preview: {
           ...state.preview,
-          name: action.payload.name.replace(
-            /<{(.+?)}>/g,
-            '<span class="tag is-cyan">$1</span>',
-          ),
+          name: action.payload.name.replace(/<{(.+?)}>/g, '<span class="tag is-cyan">$1</span>'),
           description: action.payload.description.replace(
             /<{(.+?)}>/g,
             '<span class="tag is-cyan">$1</span>',

@@ -22,20 +22,13 @@ class SwitchToggle extends Component {
 
     return (
       <Fragment>
-        <a
-          id="navbar-item-switch"
-          className={`navbar-item navbar-item-no-bg ${customClass}`}
-        >
+        <a id="navbar-item-switch" className={`navbar-item navbar-item-no-bg ${customClass}`}>
           <span
             data-label="Enable or disable auto-updater"
             className="is-hidden-touch is-light is-left is-medium tooltip"
           >
             <label className="switch is-medium">
-              <input
-                type="checkbox"
-                checked={mySwitch}
-                onChange={this.handleSwitchChange}
-              />
+              <input type="checkbox" checked={mySwitch} onChange={this.handleSwitchChange} />
               <span className="check is-success" />
               <span className="control-label" />
             </label>
@@ -45,11 +38,7 @@ class SwitchToggle extends Component {
             className="is-hidden-desktop is-light is-bottom is-small tooltip is-multiline"
           >
             <label className="switch is-medium">
-              <input
-                type="checkbox"
-                checked={mySwitch}
-                onChange={this.handleSwitchChange}
-              />
+              <input type="checkbox" checked={mySwitch} onChange={this.handleSwitchChange} />
               <span className="check is-success" />
               <span className="control-label" />
             </label>
