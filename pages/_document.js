@@ -47,7 +47,16 @@ export default class extends Document {
             type="text/css"
             src="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css"
           />
-          <script src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css"
+          />
           <style>{`body {font-family: sans-serif}`}</style>
         </Head>
         <body {...this.helmetBodyAttrComponents}>

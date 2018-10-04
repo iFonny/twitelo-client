@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
+
 import Layout from '../src/components/Layout';
+import GameSelect from '../src/components/Builder/GameSelect';
 
 import auth from '../src/libs/auth';
 
@@ -41,7 +43,13 @@ class Builder extends Component {
   render() {
     return (
       <Layout>
-        Builder
+        <div className="builder-page">
+          <div className="tile is-ancestor">
+            <div className="tile is-parent top-tile">
+              <GameSelect />
+            </div>
+          </div>
+        </div>
         <style jsx>
           {`
             .top-tile {

@@ -47,6 +47,43 @@ export function fetchBuilderData() {
   };
 }
 
+export function selectAndFetchTags(game) {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: types.SET_SELECTED_GAME,
+        payload: game,
+      });
+
+      if (game) {
+        let tags = (await api.get(`/game/tags/game/${game.id}`)).data.data;
+        tags = _.groupBy(tags, 'category');
+        const pages = _.chunk(Object.keys(tags), 4);
+
+        dispatch({
+          type: types.SET_GAME_TAGS_CATEGORY,
+          payload: tags,
+        });
+        return dispatch({
+          type: types.SET_GAME_TAGS_CATEGORY_PAGES,
+          payload: pages,
+        });
+      }
+
+      dispatch({
+        type: types.SET_GAME_TAGS_CATEGORY,
+        payload: null,
+      });
+      return dispatch({
+        type: types.SET_GAME_TAGS_CATEGORY_PAGES,
+        payload: [],
+      });
+    } catch (error) {
+      return dispatch(setError(error));
+    }
+  };
+}
+
 export function updateTextCounters(builder, name) {
   return dispatch => {
     try {

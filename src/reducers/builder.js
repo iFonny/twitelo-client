@@ -42,6 +42,15 @@ export default function(state = initialState, action) {
     case types.SET_GAMES:
       return { ...state, games: action.payload };
 
+    case types.SET_SELECTED_GAME:
+      return { ...state, selectedGame: action.payload };
+
+    case types.SET_GAME_TAGS_CATEGORY:
+      return { ...state, gameTagsCategory: action.payload };
+
+    case types.SET_GAME_TAGS_CATEGORY_PAGES:
+      return { ...state, gameTagsCategoryPages: action.payload };
+
     case types.SET_USER_TAGS:
       return { ...state, userTags: action.payload };
 
