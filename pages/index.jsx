@@ -15,13 +15,13 @@ class Home extends Component {
   static async getInitialProps({ store, isServer, req }) {
     if (isServer) await auth(store, req);
 
-    let gamesList = [];
+    let gamesList = {};
     let latestUsers = [];
 
     try {
       gamesList = (await api.get('/game')).data.data;
     } catch (e) {
-      gamesList = [];
+      gamesList = {};
       console.error(e);
     }
     try {

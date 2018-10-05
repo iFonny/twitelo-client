@@ -38,6 +38,8 @@ export const initialState = {
 };
 
 export default function(state = initialState, action) {
+  let newState;
+
   switch (action.type) {
     case types.SET_GAMES:
       return { ...state, games: action.payload };
@@ -57,11 +59,39 @@ export default function(state = initialState, action) {
     case types.SET_ACCOUNT_SETTINGS:
       return { ...state, accountSettings: action.payload };
 
+    case types.DELETE_USER_TAGS:
+      return { ...state, userTags: _.filter(state.userTags, o => !action.payload.includes(o.id)) };
+
+    case types.DELETE_ACCOUNT:
+      newState = {
+        ...state,
+        allAccounts: _.omit(state.allAccounts, [action.payload]),
+      };
+
+      return {
+        ...newState,
+        accounts: _.groupBy(newState.allAccounts, 'game_id'),
+      };
+
     case types.SET_ALL_ACCOUNTS:
       return {
         ...state,
         allAccounts: action.payload,
-        accounts: _.groupBy(state.allAccounts, 'game_id'),
+        accounts: _.groupBy(action.payload, 'game_id'),
+      };
+
+    case types.UPDATE_ACCOUNT:
+      newState = {
+        ...state,
+        allAccounts: {
+          ...state.allAccounts,
+          [action.payload.id]: action.payload,
+        },
+      };
+
+      return {
+        ...newState,
+        accounts: _.groupBy(newState.allAccounts, 'game_id'),
       };
 
     case types.SET_TWITELO_DATA_INPUT:

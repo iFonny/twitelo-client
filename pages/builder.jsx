@@ -5,6 +5,7 @@ import Router from 'next/router';
 import Layout from '../src/components/Layout';
 import GameSelect from '../src/components/Builder/GameSelect';
 import InputBuilder from '../src/components/Builder/InputBuilder';
+import Accounts from '../src/components/Builder/Accounts';
 
 import auth from '../src/libs/auth';
 
@@ -56,7 +57,7 @@ class Builder extends Component {
 
           <div className="tile is-ancestor">
             <div className="tile is-parent top-tile left-tile">
-              <accounts />
+              <Accounts />
             </div>
 
             <div className="tile is-parent is-7 top-tile right-tile">

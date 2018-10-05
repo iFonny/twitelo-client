@@ -41,12 +41,8 @@ class About extends Component {
             </p>
             <ul className="is-size-5">
               <li>
-                <span className="has-text-weight-semibold">
-                  Nicolas Thouchkaieff
-                </span>{' '}
-                <span className="is-italic">
-                  - nicolas.thouchkaieff@epitech.eu -
-                </span>
+                <span className="has-text-weight-semibold">Nicolas Thouchkaieff</span>{' '}
+                <span className="is-italic">- nicolas.thouchkaieff@epitech.eu -</span>
                 <a href="https://github.com/ifonny">
                   <span className="icon-link has-text-link">
                     <i className="fab fa-github fa-lg" />
@@ -66,16 +62,12 @@ class About extends Component {
           </section>
           {/* Github */}
           <section className="has-text-centered">
-            <p className="is-size-3 has-text-weight-bold has-text-centered">
-              Github
-            </p>
+            <p className="is-size-3 has-text-weight-bold has-text-centered">Github</p>
             <ul className="is-size-5">
               <li>
                 <span className="has-text-weight-semibold">Server</span>{' '}
                 <a href="https://github.com/iFonny/twitelo-server">
-                  <span className="is-italic">
-                    - github.com/iFonny/twitelo-server -
-                  </span>
+                  <span className="is-italic">- github.com/iFonny/twitelo-server -</span>
                   <span className="icon-link has-text-link">
                     <i className="fab fa-github fa-lg" />
                   </span>
@@ -84,9 +76,7 @@ class About extends Component {
               <li>
                 <span className="has-text-weight-semibold">Client</span>{' '}
                 <a href="https://github.com/iFonny/twitelo-client">
-                  <span className="is-italic">
-                    - github.com/iFonny/twitelo-client -
-                  </span>
+                  <span className="is-italic">- github.com/iFonny/twitelo-client -</span>
                   <span className="icon-link has-text-link">
                     <i className="fab fa-github fa-lg" />
                   </span>
@@ -96,25 +86,19 @@ class About extends Component {
           </section>
           {/* Statistics */}
           <section className="has-text-centered">
-            <p className="is-size-3 has-text-weight-bold has-text-centered">
-              {t('about.stats')}
-            </p>
+            <p className="is-size-3 has-text-weight-bold has-text-centered">{t('about.stats')}</p>
             <ul className="is-size-5">
               <li>
                 <span className="has-text-weight-bold has-text-warning is-size-4">
                   {stats[0].nb}{' '}
                 </span>
-                <span className="has-text-weight-light">
-                  {stats[0].text[lang]}{' '}
-                </span>
+                <span className="has-text-weight-light">{stats[0].text[lang]} </span>
               </li>
               <li>
                 <span className="has-text-weight-bold has-text-warning is-size-4">
                   {stats[1].nb}{' '}
                 </span>
-                <span className="has-text-weight-light">
-                  {stats[1].text[lang]}{' '}
-                </span>
+                <span className="has-text-weight-light">{stats[1].text[lang]} </span>
                 <span className="is-size-4">
                   |{' '}
                   <span className="has-text-weight-bold has-text-warning is-size-4">

@@ -6,9 +6,7 @@ const GameList = ({ gamesList }, { t }) => (
   <Fragment>
     <div className="hero-head game-list-container">
       <div className="container has-text-centered">
-        <h1 className="title is-3 has-text-weight-light">
-          {t('home.games-list')}
-        </h1>
+        <h1 className="title is-3 has-text-weight-light">{t('home.games-list')}</h1>
         <div className="has-text-centered game-list">
           {Object.keys(gamesList).map(game => (
             <div className="frame" key={gamesList[game].id}>

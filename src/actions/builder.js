@@ -18,6 +18,13 @@ export function setPreviewData(name, value) {
   };
 }
 
+export function updateAccount(account) {
+  return {
+    type: types.UPDATE_ACCOUNT,
+    payload: account,
+  };
+}
+
 export function fetchBuilderData() {
   return async dispatch => {
     try {
@@ -400,6 +407,62 @@ export function saveProfile(twiteloUser, builder) {
           value: true,
         },
       });
+
+      return dispatch({
+        type: types.SET_BUILDER_LOADING,
+        payload: false,
+      });
+    } catch (error) {
+      return dispatch(setError(error));
+    }
+  };
+}
+
+export function deleteAccount(twiteloUser, builder, account, userTags) {
+  return async dispatch => {
+    try {
+      const removeFromProfile = (text, ids) => {
+        const re = new RegExp(ids.join('|'), 'g');
+        return text.replace(re, '');
+      };
+
+      dispatch({
+        type: types.SET_BUILDER_LOADING,
+        payload: true,
+      });
+
+      await api.delete(`/account/me/${account.id}/delete`);
+      await dispatch(transformToUUID(twiteloUser, builder));
+
+      const tagsToDelete = _.filter(userTags, o => o.account_id === account.id);
+      const tagIDsToDelete = tagsToDelete.map(tag => `<{${tag.id}}>`);
+
+      const transformed = _.cloneDeep(twiteloUser);
+      transformed.name.content = removeFromProfile(transformed.name.content.trim(), tagIDsToDelete);
+      transformed.description.content = removeFromProfile(
+        transformed.description.content.trim(),
+        tagIDsToDelete,
+      );
+      transformed.location.content = removeFromProfile(
+        transformed.location.content.trim(),
+        tagIDsToDelete,
+      );
+
+      dispatch({
+        type: types.SET_TWITELO_DATA,
+        payload: transformed,
+      });
+
+      dispatch({
+        type: types.DELETE_USER_TAGS,
+        payload: tagsToDelete.map(tag => tag.id),
+      });
+      dispatch({
+        type: types.DELETE_ACCOUNT,
+        payload: account.id,
+      });
+      await dispatch(transformFromUUID(twiteloUser, builder));
+      await dispatch(updateTextCounters(builder));
 
       return dispatch({
         type: types.SET_BUILDER_LOADING,
