@@ -34,6 +34,18 @@ export default function(state = initialState, action) {
         twitelo: action.payload,
       };
 
+    case types.SET_TWITELO_DATA_CONTENT:
+      return {
+        ...state,
+        twitelo: {
+          ...state.twitelo,
+          [action.payload.name]: {
+            ...state.twitelo[action.payload.name],
+            content: action.payload.content,
+          },
+        },
+      };
+
     default:
       return state;
   }

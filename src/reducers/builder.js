@@ -62,6 +62,9 @@ export default function(state = initialState, action) {
     case types.DELETE_USER_TAGS:
       return { ...state, userTags: _.filter(state.userTags, o => !action.payload.includes(o.id)) };
 
+    case types.ADD_USER_TAG:
+      return { ...state, userTags: [...state.userTags, action.payload] };
+
     case types.DELETE_ACCOUNT:
       newState = {
         ...state,
