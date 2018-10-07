@@ -80,13 +80,12 @@ class InputBuilder extends Component {
 
   async handleInputUpdate(e, name) {
     const {
-      twiteloData,
       builder,
       actionSetPreviewData,
       actionTransformToUUID,
       actionUpdateTextCounters,
     } = this.props;
-    actionTransformToUUID(twiteloData, builder);
+    actionTransformToUUID();
     actionUpdateTextCounters(builder, name);
 
     actionSetPreviewData('saved', false);
@@ -95,11 +94,11 @@ class InputBuilder extends Component {
   async handleSaveProfile(e) {
     e.preventDefault();
 
-    const { actionSaveProfile, twiteloData, builder } = this.props;
+    const { actionSaveProfile, twiteloData } = this.props;
 
     this.setState({ isLoading: true });
 
-    await actionSaveProfile(twiteloData, builder);
+    await actionSaveProfile(twiteloData);
 
     setTimeout(() => {
       this.setState({ isLoading: false });

@@ -460,302 +460,290 @@ class GameTagsList extends Component {
 
                                 <div>
                                   <section className="tag-creation-popup has-text-left animated fadeIn">
-                                    {tagCreation.account && (
-                                      <Fragment>
-                                        <div className="field is-expanded is-grouped">
-                                          <p className="control">
-                                            <label className="label">{t('builder.account')}</label>
-                                          </p>
+                                    {/* CHOOSE ACCOUNT */
+                                    tagCreation.account && (
+                                      <div className="field is-expanded is-grouped">
+                                        <p className="control">
+                                          <label className="label">{t('builder.account')}</label>
+                                        </p>
+                                        <div className="control is-expanded">
+                                          <span className="select is-small is-fullwidth is-empty">
+                                            <select
+                                              defaultValue=""
+                                              value={dataForm.account_id}
+                                              onChange={e =>
+                                                this.handleInputDataForm(e, 'account_id')
+                                              }
+                                              required
+                                            >
+                                              <option disabled hidden value="">
+                                                {t('builder.account')}
+                                              </option>
+                                              {Object.keys(accounts[tagCreation.gameID]).map(
+                                                accountKey => (
+                                                  <option
+                                                    key={accountKey}
+                                                    value={
+                                                      accounts[tagCreation.gameID][accountKey].id
+                                                    }
+                                                  >
+                                                    {
+                                                      accounts[tagCreation.gameID][accountKey]
+                                                        .settings.username
+                                                    }{' '}
+                                                    {accounts[tagCreation.gameID][accountKey]
+                                                      .settings.region
+                                                      ? `(${accounts[tagCreation.gameID][
+                                                          accountKey
+                                                        ].settings.region.toUpperCase()})`
+                                                      : ''}
+                                                  </option>
+                                                ),
+                                              )}
+                                            </select>
+                                          </span>
+                                        </div>
+                                      </div>
+                                    )}
+
+                                    {/* FORMAT SETTINGS */
+                                    Object.keys(tagCreation.fieldSettings).map(settingKey => (
+                                      <div
+                                        key={settingKey}
+                                        className="field is-expanded is-grouped-multiline is-grouped"
+                                      >
+                                        <p className="control">
+                                          <label className="label">
+                                            {tagCreation.fieldSettings[settingKey].label[locale]}{' '}
+                                            {tagCreation.fieldSettings[settingKey].tooltip && (
+                                              <span
+                                                data-label={
+                                                  tagCreation.fieldSettings[settingKey].tooltip[
+                                                    locale
+                                                  ]
+                                                }
+                                                className="is-light is-right is-small tooltip is-multiline"
+                                              >
+                                                <span className="icon has-text-grey-light is-small">
+                                                  <i className="far fa-question-circle" />
+                                                </span>
+                                              </span>
+                                            )}
+                                          </label>
+                                        </p>
+
+                                        {tagCreation.fieldSettings[settingKey].type ===
+                                          'select' && (
                                           <div className="control is-expanded">
                                             <span className="select is-small is-fullwidth is-empty">
                                               <select
                                                 defaultValue=""
-                                                value={dataForm.account_id}
+                                                value={dataForm.settings[settingKey]}
                                                 onChange={e =>
-                                                  this.handleInputDataForm(e, 'account_id')
+                                                  this.handleInputDataFormSettings(e, settingKey)
                                                 }
                                                 required
                                               >
                                                 <option disabled hidden value="">
-                                                  {t('builder.account')}
+                                                  {
+                                                    tagCreation.fieldSettings[settingKey].label[
+                                                      locale
+                                                    ]
+                                                  }
                                                 </option>
-                                                {Object.keys(accounts[tagCreation.gameID]).map(
-                                                  accountKey => (
-                                                    <option
-                                                      key={accountKey}
-                                                      value={
-                                                        accounts[tagCreation.gameID][accountKey].id
-                                                      }
-                                                    >
-                                                      {
-                                                        accounts[tagCreation.gameID][accountKey]
-                                                          .settings.username
-                                                      }{' '}
-                                                      {accounts[tagCreation.gameID][accountKey]
-                                                        .settings.region
-                                                        ? `(${accounts[tagCreation.gameID][
-                                                            accountKey
-                                                          ].settings.region.toUpperCase()})`
-                                                        : ''}
-                                                    </option>
-                                                  ),
-                                                )}
+                                                {Object.keys(
+                                                  tagCreation.fieldSettings[settingKey].input,
+                                                ).map(inputKey => (
+                                                  <option key={inputKey} value={inputKey}>
+                                                    {
+                                                      tagCreation.fieldSettings[settingKey].input[
+                                                        inputKey
+                                                      ][locale]
+                                                    }{' '}
+                                                    {tagCreation.fieldSettings[settingKey].input[
+                                                      inputKey
+                                                    ].value !== 0
+                                                      ? `(${
+                                                          tagCreation.fieldSettings[settingKey]
+                                                            .input[inputKey].value > 0
+                                                            ? '+'
+                                                            : '-'
+                                                        } ${Math.abs(
+                                                          tagCreation.fieldSettings[settingKey]
+                                                            .input[inputKey].value,
+                                                        )} ${t('builder.characters')})`
+                                                      : ''}
+                                                  </option>
+                                                ))}
                                               </select>
                                             </span>
                                           </div>
-                                        </div>
+                                        )}
+                                      </div>
+                                    ))}
 
-                                        {Object.keys(tagCreation.fieldSettings).map(settingKey => (
-                                          <div
-                                            key={settingKey}
-                                            className="field is-expanded is-grouped-multiline is-grouped"
-                                          >
-                                            <p className="control">
-                                              <label className="label">
-                                                {
-                                                  tagCreation.fieldSettings[settingKey].label[
+                                    {/* DATA GAME SETTING */
+                                    Object.keys(tagCreation.dataSettings).map(settingKey => (
+                                      <div
+                                        key={settingKey}
+                                        className="field is-expanded is-grouped-multiline is-grouped"
+                                      >
+                                        <p className="control">
+                                          <label className="label">
+                                            {tagCreation.dataSettings[settingKey].label[locale]}{' '}
+                                            {tagCreation.dataSettings[settingKey].tooltip && (
+                                              <span
+                                                data-label={
+                                                  tagCreation.dataSettings[settingKey].tooltip[
                                                     locale
                                                   ]
-                                                }{' '}
-                                                {tagCreation.fieldSettings[settingKey].tooltip && (
-                                                  <span
-                                                    data-label={
-                                                      tagCreation.fieldSettings[settingKey].tooltip[
-                                                        locale
-                                                      ]
-                                                    }
-                                                    className="is-light is-right is-small tooltip is-multiline"
-                                                  >
-                                                    <span className="icon has-text-grey-light is-small">
-                                                      <i className="far fa-question-circle" />
-                                                    </span>
-                                                  </span>
-                                                )}
-                                              </label>
-                                            </p>
-
-                                            {tagCreation.fieldSettings[settingKey].type ===
-                                              'select' && (
-                                              <div className="control is-expanded">
-                                                <span className="select is-small is-fullwidth is-empty">
-                                                  <select
-                                                    defaultValue=""
-                                                    value={dataForm.settings[settingKey]}
-                                                    onChange={e =>
-                                                      this.handleInputDataFormSettings(
-                                                        e,
-                                                        settingKey,
-                                                      )
-                                                    }
-                                                    required
-                                                  >
-                                                    <option disabled hidden value="">
-                                                      {
-                                                        tagCreation.fieldSettings[settingKey].label[
-                                                          locale
-                                                        ]
-                                                      }
-                                                    </option>
-                                                    {Object.keys(
-                                                      tagCreation.fieldSettings[settingKey].input,
-                                                    ).map(inputKey => (
-                                                      <option key={inputKey} value={inputKey}>
-                                                        {
-                                                          tagCreation.fieldSettings[settingKey]
-                                                            .input[inputKey][locale]
-                                                        }{' '}
-                                                        {tagCreation.fieldSettings[settingKey]
-                                                          .input[inputKey].value !== 0
-                                                          ? `(${
-                                                              tagCreation.fieldSettings[settingKey]
-                                                                .input[inputKey].value > 0
-                                                                ? '+'
-                                                                : '-'
-                                                            } ${Math.abs(
-                                                              tagCreation.fieldSettings[settingKey]
-                                                                .input[inputKey].value,
-                                                            )} ${t('builder.characters')})`
-                                                          : ''}
-                                                      </option>
-                                                    ))}
-                                                  </select>
+                                                }
+                                                className="is-light is-right is-small tooltip is-multiline"
+                                              >
+                                                <span className="icon has-text-grey-light is-small">
+                                                  <i className="far fa-question-circle" />
                                                 </span>
-                                              </div>
+                                              </span>
                                             )}
+                                          </label>
+                                        </p>
+
+                                        {/* INPUT TYPE: string */
+                                        tagCreation.dataSettings[settingKey].type === 'string' && (
+                                          <div className="control is-small is-expanded is-clearfix">
+                                            <input
+                                              onChange={e =>
+                                                this.handleInputDataFormDataSettings(e, settingKey)
+                                              }
+                                              value={dataForm.dataSettings[settingKey]}
+                                              type="text"
+                                              placeholder={
+                                                tagCreation.dataSettings[settingKey].label[locale]
+                                              }
+                                              required
+                                              className="input is-small"
+                                            />
                                           </div>
-                                        ))}
+                                        )}
 
-                                        {Object.keys(tagCreation.dataSettings).map(settingKey => (
-                                          <div
-                                            key={settingKey}
-                                            className="field is-expanded is-grouped-multiline is-grouped"
-                                          >
-                                            <p className="control">
-                                              <label className="label">
-                                                {tagCreation.dataSettings[settingKey].label[locale]}{' '}
-                                                {tagCreation.dataSettings[settingKey].tooltip && (
-                                                  <span
-                                                    data-label={
-                                                      tagCreation.dataSettings[settingKey].tooltip[
-                                                        locale
-                                                      ]
-                                                    }
-                                                    className="is-light is-right is-small tooltip is-multiline"
-                                                  >
-                                                    <span className="icon has-text-grey-light is-small">
-                                                      <i className="far fa-question-circle" />
-                                                    </span>
-                                                  </span>
-                                                )}
-                                              </label>
-                                            </p>
-
-                                            {/* INPUT TYPE: string */
-                                            tagCreation.dataSettings[settingKey].type ===
-                                              'string' && (
-                                              <div className="control is-small is-expanded is-clearfix">
-                                                <input
-                                                  onChange={e =>
-                                                    this.handleInputDataFormDataSettings(
-                                                      e,
-                                                      settingKey,
-                                                    )
-                                                  }
-                                                  value={dataForm.dataSettings[settingKey]}
-                                                  type="text"
-                                                  placeholder={
+                                        {/* INPUT TYPE: select */
+                                        tagCreation.dataSettings[settingKey].type === 'select' && (
+                                          <div className="control is-expanded">
+                                            <span className="select is-small is-fullwidth is-empty">
+                                              <select
+                                                defaultValue=""
+                                                value={dataForm.dataSettings[settingKey]}
+                                                onChange={e =>
+                                                  this.handleInputDataFormDataSettings(
+                                                    e,
+                                                    settingKey,
+                                                  )
+                                                }
+                                                required
+                                              >
+                                                <option disabled hidden value="">
+                                                  {
                                                     tagCreation.dataSettings[settingKey].label[
                                                       locale
                                                     ]
                                                   }
-                                                  required
-                                                  className="input is-small"
-                                                />
-                                              </div>
-                                            )}
-
-                                            {/* INPUT TYPE: select */
-                                            tagCreation.dataSettings[settingKey].type ===
-                                              'select' && (
-                                              <div className="control is-expanded">
-                                                <span className="select is-small is-fullwidth is-empty">
-                                                  <select
-                                                    defaultValue=""
-                                                    value={dataForm.dataSettings[settingKey]}
-                                                    onChange={e =>
-                                                      this.handleInputDataFormDataSettings(
-                                                        e,
-                                                        settingKey,
-                                                      )
+                                                </option>
+                                                {Object.keys(
+                                                  tagCreation.dataSettings[settingKey].input,
+                                                ).map(inputKey => (
+                                                  <option key={inputKey} value={inputKey}>
+                                                    {
+                                                      tagCreation.dataSettings[settingKey].input[
+                                                        inputKey
+                                                      ][locale]
                                                     }
-                                                    required
-                                                  >
-                                                    <option disabled hidden value="">
-                                                      {
-                                                        tagCreation.dataSettings[settingKey].label[
-                                                          locale
-                                                        ]
+                                                  </option>
+                                                ))}
+                                              </select>
+                                            </span>
+                                          </div>
+                                        )}
+
+                                        {/* INPUT TYPE: speedrun_game */
+                                        tagCreation.dataSettings[settingKey].type ===
+                                          'speedrun_game' && (
+                                          <div className="autocomplete control is-expanded">
+                                            <div
+                                              className={`control has-icons-left is-small is-clearfix ${speedrunDynamicSettings.isFetching &&
+                                                'is-loading'}`}
+                                            >
+                                              <input
+                                                value={speedrunDynamicSettings.name}
+                                                onChange={e =>
+                                                  this.handleInputDataDynamicSettings(e, 'name')
+                                                }
+                                                onInput={this.handleGetSpeedrunGames}
+                                                type="text"
+                                                placeholder={
+                                                  tagCreation.dataSettings[settingKey].label[locale]
+                                                }
+                                                required="required"
+                                                className="input is-small"
+                                              />
+                                              <span className="icon is-left is-small">
+                                                <i className="fas fa-search" />
+                                              </span>
+                                            </div>
+                                            {speedrunDynamicSettings.show && (
+                                              <div className="dropdown-menu">
+                                                <div className="dropdown-content">
+                                                  {speedrunDynamicSettings.data.map(theGame => (
+                                                    <a
+                                                      key={theGame.id}
+                                                      className="dropdown-item"
+                                                      role="button"
+                                                      onClick={() =>
+                                                        this.handleSelectSpeedrunGame(theGame)
                                                       }
-                                                    </option>
-                                                    {Object.keys(
-                                                      tagCreation.dataSettings[settingKey].input,
-                                                    ).map(inputKey => (
-                                                      <option key={inputKey} value={inputKey}>
-                                                        {
-                                                          tagCreation.dataSettings[settingKey]
-                                                            .input[inputKey][locale]
-                                                        }
-                                                      </option>
-                                                    ))}
-                                                  </select>
-                                                </span>
-                                              </div>
-                                            )}
-
-                                            {/* INPUT TYPE: speedrun_game */
-                                            tagCreation.dataSettings[settingKey].type ===
-                                              'speedrun_game' && (
-                                              <div className="autocomplete control is-expanded">
-                                                <div
-                                                  className={`control has-icons-left is-small is-clearfix ${speedrunDynamicSettings.isFetching &&
-                                                    'is-loading'}`}
-                                                >
-                                                  <input
-                                                    value={speedrunDynamicSettings.name}
-                                                    onChange={e =>
-                                                      this.handleInputDataDynamicSettings(e, 'name')
-                                                    }
-                                                    onInput={this.handleGetSpeedrunGames}
-                                                    type="text"
-                                                    placeholder={
-                                                      tagCreation.dataSettings[settingKey].label[
-                                                        locale
-                                                      ]
-                                                    }
-                                                    required="required"
-                                                    className="input is-small"
-                                                  />
-                                                  <span className="icon is-left is-small">
-                                                    <i className="fas fa-search" />
-                                                  </span>
+                                                    >
+                                                      <span>{theGame.names.international}</span>
+                                                    </a>
+                                                  ))}
                                                 </div>
-                                                {speedrunDynamicSettings.show && (
-                                                  <div className="dropdown-menu">
-                                                    <div className="dropdown-content">
-                                                      {speedrunDynamicSettings.data.map(theGame => (
-                                                        <a
-                                                          key={theGame.id}
-                                                          className="dropdown-item"
-                                                          role="button"
-                                                          onClick={() =>
-                                                            this.handleSelectSpeedrunGame(theGame)
-                                                          }
-                                                        >
-                                                          <span>{theGame.names.international}</span>
-                                                        </a>
-                                                      ))}
-                                                    </div>
-                                                  </div>
-                                                )}
-                                              </div>
-                                            )}
-
-                                            {/* INPUT TYPE: speedrun_category */
-                                            tagCreation.dataSettings[settingKey].type ===
-                                              'speedrun_category' && (
-                                              <div className="control is-expanded">
-                                                <span className="select is-small is-fullwidth is-empty">
-                                                  <select
-                                                    defaultValue=""
-                                                    value={dataForm.dataSettings[settingKey]}
-                                                    onChange={e =>
-                                                      this.handleInputDataFormDataSettings(
-                                                        e,
-                                                        settingKey,
-                                                      )
-                                                    }
-                                                    required
-                                                  >
-                                                    <option disabled hidden value="">
-                                                      {
-                                                        tagCreation.dataSettings[settingKey].label[
-                                                          locale
-                                                        ]
-                                                      }
-                                                    </option>
-                                                    {this.getSpeedrunCategories().map(input => (
-                                                      <option key={input.id} value={input.id}>
-                                                        {input.name}
-                                                      </option>
-                                                    ))}
-                                                  </select>
-                                                </span>
                                               </div>
                                             )}
                                           </div>
-                                        ))}
-                                      </Fragment>
-                                    )}
+                                        )}
+
+                                        {/* INPUT TYPE: speedrun_category */
+                                        tagCreation.dataSettings[settingKey].type ===
+                                          'speedrun_category' && (
+                                          <div className="control is-expanded">
+                                            <span className="select is-small is-fullwidth is-empty">
+                                              <select
+                                                defaultValue=""
+                                                value={dataForm.dataSettings[settingKey]}
+                                                onChange={e =>
+                                                  this.handleInputDataFormDataSettings(
+                                                    e,
+                                                    settingKey,
+                                                  )
+                                                }
+                                                required
+                                              >
+                                                <option disabled hidden value="">
+                                                  {
+                                                    tagCreation.dataSettings[settingKey].label[
+                                                      locale
+                                                    ]
+                                                  }
+                                                </option>
+                                                {this.getSpeedrunCategories().map(input => (
+                                                  <option key={input.id} value={input.id}>
+                                                    {input.name}
+                                                  </option>
+                                                ))}
+                                              </select>
+                                            </span>
+                                          </div>
+                                        )}
+                                      </div>
+                                    ))}
                                   </section>
                                 </div>
 

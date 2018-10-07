@@ -4,7 +4,15 @@ import types from './actionTypes';
 import api from '../libs/api';
 import { setError } from './base';
 
+export function setBuilderLoading(status) {
+  return {
+    type: types.SET_BUILDER_LOADING,
+    payload: status,
+  };
+}
+
 export function setTwiteloDataInput(name, value) {
+  console.log(name, value);
   return {
     type: types.SET_TWITELO_DATA_INPUT,
     payload: { name, value },
@@ -42,7 +50,7 @@ export function fetchBuilderData() {
       */
 
       // TODO: CHECK SI FONCTIONNE VRAIMENT
-      Object.keys(userTags).forEach(key => {
+      userTags.forEach((userTag, key) => {
         userTags[key].included = false;
       });
 
@@ -168,9 +176,12 @@ export function updateTextCounters(builder, name) {
   };
 }
 
-export function transformFromUUID(twiteloUser, builder) {
-  return dispatch => {
+export function transformFromUUID() {
+  return (dispatch, getState) => {
     try {
+      const twiteloUser = getState().user.twitelo;
+      let { builder } = getState();
+
       const replaceFromUUID = (text, userTags) => {
         let newText = text;
         const mapObj = {};
@@ -202,12 +213,14 @@ export function transformFromUUID(twiteloUser, builder) {
         return newText;
       };
 
-      Object.keys(builder.userTags).forEach(key => {
+      builder.userTags.forEach((userTag, key) => {
         dispatch({
           type: types.SET_USER_TAG_NOT_INCLUDED,
           payload: key,
         });
       });
+
+      ({ builder } = getState());
 
       const transformed = {
         name: replaceFromUUID(twiteloUser.name.content.trim(), builder.userTags),
@@ -225,9 +238,12 @@ export function transformFromUUID(twiteloUser, builder) {
   };
 }
 
-export function transformToUUID(twiteloUser, builder) {
-  return dispatch => {
+export function transformToUUID() {
+  return (dispatch, getState) => {
     try {
+      const twiteloUser = getState().user.twitelo;
+      let { builder } = getState();
+
       const replaceToUUID = (text, userTags) => {
         let newText = text;
         const mapObj = {};
@@ -258,12 +274,14 @@ export function transformToUUID(twiteloUser, builder) {
         return newText;
       };
 
-      Object.keys(builder.userTags).forEach(key => {
+      builder.userTags.forEach((userTag, key) => {
         dispatch({
           type: types.SET_USER_TAG_NOT_INCLUDED,
           payload: key,
         });
       });
+
+      ({ builder } = getState());
 
       const transformed = _.cloneDeep(twiteloUser);
 
@@ -300,9 +318,11 @@ export function transformToUUID(twiteloUser, builder) {
   };
 }
 
-export function refreshPreview(twiteloUser, builder) {
-  return async dispatch => {
+export function refreshPreview() {
+  return async (dispatch, getState) => {
     try {
+      let twiteloUser = getState().user.twitelo;
+
       // Start loadings
       dispatch({
         type: types.SET_PREVIEW_DATA,
@@ -316,7 +336,9 @@ export function refreshPreview(twiteloUser, builder) {
         payload: true,
       });
 
-      await dispatch(transformToUUID(twiteloUser, builder));
+      await dispatch(transformToUUID());
+
+      twiteloUser = getState().user.twitelo;
 
       const preview = (await api.post(`/user/me/preview`, {
         name: twiteloUser.name.content,
@@ -355,7 +377,7 @@ export function refreshPreview(twiteloUser, builder) {
   };
 }
 
-export function saveProfile(twiteloUser, builder) {
+export function saveProfile(twiteloUser) {
   return async dispatch => {
     try {
       // start loadings
@@ -371,7 +393,7 @@ export function saveProfile(twiteloUser, builder) {
         payload: true,
       });
 
-      await dispatch(transformToUUID(twiteloUser, builder));
+      await dispatch(transformToUUID());
 
       const preview = (await api.post(`/user/me/save/profile`, {
         name: twiteloUser.name.content,
@@ -418,6 +440,42 @@ export function saveProfile(twiteloUser, builder) {
   };
 }
 
+export function deleteTagWithIndex(tag) {
+  return async (dispatch, getState) => {
+    try {
+      const twiteloUser = getState().user.twitelo;
+
+      await api.delete(`/tag/me/${tag.id}/delete`);
+      await dispatch(transformToUUID());
+
+      const transformed = _.cloneDeep(twiteloUser);
+      transformed.name.content = transformed.name.content.replace(`<{${tag.id}}>`, '').trim();
+      transformed.description.content = transformed.description.content
+        .replace(`<{${tag.id}}>`, '')
+        .trim();
+      transformed.location.content = transformed.location.content
+        .replace(`<{${tag.id}}>`, '')
+        .trim();
+
+      dispatch({
+        type: types.SET_TWITELO_DATA,
+        payload: transformed,
+      });
+
+      dispatch({
+        type: types.DELETE_USER_TAG,
+        payload: tag.index,
+      });
+
+      await dispatch(transformFromUUID());
+      const { builder } = getState();
+      return dispatch(updateTextCounters(builder));
+    } catch (error) {
+      return dispatch(setError(error));
+    }
+  };
+}
+
 export function deleteAccount(twiteloUser, builder, account, userTags) {
   return async (dispatch, getState) => {
     try {
@@ -432,9 +490,9 @@ export function deleteAccount(twiteloUser, builder, account, userTags) {
       });
 
       await api.delete(`/account/me/${account.id}/delete`);
-      await dispatch(transformToUUID(twiteloUser, builder));
+      await dispatch(transformToUUID());
 
-      let newTwiteloUser = getState().user.twitelo;
+      const newTwiteloUser = getState().user.twitelo;
 
       const tagsToDelete = _.filter(userTags, o => o.account_id === account.id);
       const tagIDsToDelete = tagsToDelete.map(tag => `<{${tag.id}}>`);
@@ -464,10 +522,8 @@ export function deleteAccount(twiteloUser, builder, account, userTags) {
         payload: account.id,
       });
 
-      newTwiteloUser = getState().user.twitelo;
-      let newBuilder = getState().builder;
-      await dispatch(transformFromUUID(newTwiteloUser, newBuilder));
-      newBuilder = getState().builder;
+      await dispatch(transformFromUUID());
+      const newBuilder = getState().builder;
       await dispatch(updateTextCounters(newBuilder));
 
       return dispatch({
@@ -483,9 +539,6 @@ export function deleteAccount(twiteloUser, builder, account, userTags) {
 export function createTagAndUpdate({ destination, tagInfo, accountID, settings, dataSettings }) {
   return async (dispatch, getState) => {
     try {
-      let twiteloUser = getState().user.twitelo;
-      let { builder } = getState();
-
       dispatch({
         type: types.SET_BUILDER_LOADING,
         payload: true,
@@ -503,10 +556,8 @@ export function createTagAndUpdate({ destination, tagInfo, accountID, settings, 
         type: types.ADD_USER_TAG,
         payload: tag,
       });
-      ({ builder } = getState());
-      await dispatch(transformToUUID(twiteloUser, builder));
-      twiteloUser = getState().user.twitelo;
-      ({ builder } = getState());
+      await dispatch(transformToUUID());
+      const twiteloUser = getState().user.twitelo;
       await dispatch({
         type: types.SET_TWITELO_DATA_CONTENT,
         payload: {
@@ -514,15 +565,51 @@ export function createTagAndUpdate({ destination, tagInfo, accountID, settings, 
           content: `${twiteloUser[destination].content.trim()} <{${tag.id}}>`,
         },
       });
-      twiteloUser = getState().user.twitelo;
-      ({ builder } = getState());
 
-      dispatch(transformFromUUID(twiteloUser, builder));
+      dispatch(transformFromUUID());
 
       return dispatch({
         type: types.SET_BUILDER_LOADING,
         payload: false,
       });
+    } catch (error) {
+      return dispatch(setError(error));
+    }
+  };
+}
+
+export function updateTag({ tag, accountID, settings, dataSettings }) {
+  return async (dispatch, getState) => {
+    try {
+      const updatedTag = (await api.post(`/tag/me/${tag.id}/edit`, {
+        settings,
+        tag_id: tag.tag_id,
+        game_id: tag.game_id,
+        account_id: accountID,
+        data_settings: dataSettings,
+      })).data.data;
+
+      if (updatedTag) {
+        updatedTag.index = tag.index;
+        updatedTag.info = tag.info;
+        updatedTag.included = tag.included;
+
+        dispatch({
+          type: types.UPDATE_USER_TAG,
+          payload: updatedTag,
+        });
+        await dispatch(updateTextCounters(getState().builder));
+
+        // Preview need update
+        return dispatch({
+          type: types.SET_PREVIEW_DATA,
+          payload: {
+            name: 'needUpdate',
+            value: true,
+          },
+        });
+      }
+      return 0;
     } catch (error) {
       return dispatch(setError(error));
     }

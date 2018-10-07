@@ -37,11 +37,12 @@ class Builder extends Component {
     } else if (Object.keys(builder.games).length <= 0) {
       await store.dispatch(fetchBuilderData());
       ({ user, builder } = store.getState());
-      await store.dispatch(transformFromUUID(user.twitelo, builder));
+      await store.dispatch(transformFromUUID());
       ({ user, builder } = store.getState());
       await store.dispatch(updateTextCounters(builder));
       ({ user, builder } = store.getState());
-      await store.dispatch(refreshPreview(user.twitelo, builder));
+      await store.dispatch(refreshPreview());
+      ({ user, builder } = store.getState());
     }
 
     return {};

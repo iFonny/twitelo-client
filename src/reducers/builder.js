@@ -62,6 +62,9 @@ export default function(state = initialState, action) {
     case types.DELETE_USER_TAGS:
       return { ...state, userTags: _.filter(state.userTags, o => !action.payload.includes(o.id)) };
 
+    case types.DELETE_USER_TAG:
+      return { ...state, userTags: _.filter(state.userTags, (o, key) => key !== action.payload) };
+
     case types.ADD_USER_TAG:
       return { ...state, userTags: [...state.userTags, action.payload] };
 
@@ -158,7 +161,7 @@ export default function(state = initialState, action) {
         ...state,
         userTags: state.userTags.map(
           (userTag, index) =>
-            index === action.payload
+            index === parseInt(action.payload, 10)
               ? {
                   ...userTag,
                   included: false,
@@ -172,12 +175,21 @@ export default function(state = initialState, action) {
         ...state,
         userTags: state.userTags.map(
           (userTag, index) =>
-            index === action.payload
+            index === parseInt(action.payload, 10)
               ? {
                   ...userTag,
                   included: true,
                 }
               : { ...userTag },
+        ),
+      };
+
+    case types.UPDATE_USER_TAG:
+      return {
+        ...state,
+        userTags: state.userTags.map(
+          (userTag, index) =>
+            index === parseInt(action.payload.index, 10) ? { ...action.payload } : { ...userTag },
         ),
       };
 
