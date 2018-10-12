@@ -45,9 +45,7 @@ UserList.propTypes = {
 const FooterHome = ({ latestUsers }, { t }) => (
   <Fragment>
     <footer className="footer is-fixed-bottom has-text-centered">
-      <p className="sub-title is-6 has-text-weight-light">
-        {t('home.latest-users')}
-      </p>
+      <p className="sub-title is-6 has-text-weight-light">{t('home.latest-users')}</p>
       <UserList latestUsers={latestUsers} />
       <p className="sub-title is-8 has-text-weight-light">
         <b>Twitelo</b> -{' '}

@@ -23,8 +23,7 @@ const SiteDescription = (props, { t }) => (
           <p className="subtitle is-5 has-text-white-ter has-text-weight-light is-italic">
             {t('home.description-example.l1')}
             <br />
-            {t('home.description-example.l2')}{' '}
-            <span className="tag is-cyan">Diamond</span>
+            {t('home.description-example.l2')} <span className="tag is-cyan">Diamond</span>
             <span className="tag is-cyan">IV</span>
             <span className="tag is-cyan">86 LP</span>
             {t('home.description-example.l3')}

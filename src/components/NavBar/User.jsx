@@ -29,11 +29,7 @@ class User extends Component {
           className={`dropdown dropdown-user ${isActive &&
             'is-active'} is-bottom-left is-mobile-modal ${customClass}`}
         >
-          <div
-            role="button"
-            className="dropdown-trigger"
-            onClick={this.toggleActiveClass}
-          >
+          <div role="button" className="dropdown-trigger" onClick={this.toggleActiveClass}>
             <a className="navbar-item navbar-item-line no-select">
               <img
                 src={user.profile_image_url}
@@ -47,10 +43,7 @@ class User extends Component {
               />
             </a>
           </div>
-          <div
-            className="background"
-            style={isActive ? {} : { display: 'none' }}
-          />
+          <div className="background" style={isActive ? {} : { display: 'none' }} />
           <div className="dropdown-menu">
             <div className="dropdown-content">
               <a
@@ -62,16 +55,11 @@ class User extends Component {
                 <span className="icon">
                   <i className="fas fa-times-circle fa-lg" />
                 </span>
-                <span className="sub-menu-button">
-                  {t('navbar.close-popup')}
-                </span>
+                <span className="sub-menu-button">{t('navbar.close-popup')}</span>
               </a>
               <div className="card-content">
                 <div className="media media-menu">
-                  <a
-                    href={`http://twitter.com/${user.username}`}
-                    className="media-left no-select"
-                  >
+                  <a href={`http://twitter.com/${user.username}`} className="media-left no-select">
                     <img
                       src={user.profile_image_url}
                       onError={e => {
@@ -83,9 +71,7 @@ class User extends Component {
                     />
                   </a>
                   <div className="media-content">
-                    <p className="is-6 has-text-white text-overflow-is-ellipsis">
-                      {user.name}
-                    </p>
+                    <p className="is-6 has-text-white text-overflow-is-ellipsis">{user.name}</p>
                     <p className="is-6 has-text-grey-lighter has-text-weight-light is-italic text-overflow-is-ellipsis">
                       {user.username}
                     </p>
@@ -105,9 +91,7 @@ class User extends Component {
                   <span className="icon">
                     <i className="fas fa-sign-out-alt fa-lg" />
                   </span>
-                  <span className="sub-menu-button">
-                    {t('navbar.user.logout')}
-                  </span>
+                  <span className="sub-menu-button">{t('navbar.user.logout')}</span>
                 </a>
               </div>
             </div>

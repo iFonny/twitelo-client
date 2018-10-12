@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 const Builder = ({ customClass }, { t, router: { pathname } }) => (
   <Link href="/builder">
     <a
-      className={`navbar-item navbar-item-line ${customClass} ${pathname ===
-        '/builder' && 'navbar-item-line-active'}`}
+      className={`navbar-item navbar-item-line ${customClass} ${pathname === '/builder' &&
+        'navbar-item-line-active'}`}
     >
       <span className="icon is-medium has-text-light">
         <i className="fas fa-lg fa-paint-brush" />

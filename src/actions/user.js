@@ -2,7 +2,7 @@ import { setLanguage } from 'redux-i18n';
 
 import types from './actionTypes';
 import api from '../libs/api';
-import { setError } from './base';
+import setError from './base';
 
 export function setUserSwitch(mySwitch) {
   return dispatch =>

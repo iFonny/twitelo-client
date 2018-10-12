@@ -49,8 +49,7 @@ class NavBar extends Component {
             <div
               onClick={this.toggleActiveClass}
               id="menu-burger-icon"
-              className={`navbar-burger navbar-item-no-bg ${isActive &&
-                'is-active'}`}
+              className={`navbar-burger navbar-item-no-bg ${isActive && 'is-active'}`}
               role="button"
             >
               <span />

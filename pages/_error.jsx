@@ -14,6 +14,10 @@ class Error extends Component {
     return { statusCode: null };
   }
 
+  componentWillUpdate() {
+    document.title = 'Error - Twitelo';
+  }
+
   render() {
     const { statusCode } = this.props;
     const { t } = this.context;
@@ -29,9 +33,7 @@ class Error extends Component {
     return (
       <Layout>
         <div className="container">
-          {parseInt(statusCode, 10) && (
-            <div className="page-error-code">{statusCode}</div>
-          )}
+          {parseInt(statusCode, 10) && <div className="page-error-code">{statusCode}</div>}
           <div className="page-error-message">{message}</div>
           <br />
           <Link href="/">
@@ -53,15 +55,13 @@ class Error extends Component {
             font-weight: bolder;
             font-size: 8rem;
             text-align: center;
-            font-family: 'Neucha', 'Avenir Next', Avenir, Helvetica, Arial,
-              sans-serif;
+            font-family: 'Neucha', 'Avenir Next', Avenir, Helvetica, Arial, sans-serif;
             line-height: normal;
           }
           .page-error-message {
             font-size: 1.5rem;
             text-align: center;
-            font-family: 'Neucha', 'Avenir Next', Avenir, Helvetica, Arial,
-              sans-serif;
+            font-family: 'Neucha', 'Avenir Next', Avenir, Helvetica, Arial, sans-serif;
           }
         `}</style>
       </Layout>
@@ -74,8 +74,7 @@ Error.contextTypes = {
 };
 
 Error.propTypes = {
-  statusCode: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    .isRequired,
+  statusCode: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 export default Error;

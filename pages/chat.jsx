@@ -26,6 +26,10 @@ class Chat extends Component {
     return {};
   }
 
+  componentWillUpdate() {
+    document.title = 'Chat - Twitelo';
+  }
+
   render() {
     return <Layout>Chat</Layout>;
   }

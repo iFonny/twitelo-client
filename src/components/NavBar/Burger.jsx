@@ -29,8 +29,7 @@ class Burger extends Component {
       <Fragment>
         <div
           id="menu-burger"
-          className={`menu-burger ${isActiveClass &&
-            'is-active'} ${customClass}`}
+          className={`menu-burger ${isActiveClass && 'is-active'} ${customClass}`}
         >
           {user && (
             <Fragment>
@@ -51,9 +50,7 @@ class Burger extends Component {
                   <span className="icon is-medium">
                     <i className="fas fa-lg fa-comments" />
                   </span>
-                  <span className="sub-menu-button has-text-grey-lighter">
-                    Chat
-                  </span>
+                  <span className="sub-menu-button has-text-grey-lighter">Chat</span>
                 </a>
               </Link>
             </Fragment>
@@ -64,9 +61,7 @@ class Burger extends Component {
               <span className="icon is-medium">
                 <i className="fas fa-lg fa-info-circle" />
               </span>
-              <span className="sub-menu-button has-text-grey-lighter">
-                {t('navbar.about')}
-              </span>
+              <span className="sub-menu-button has-text-grey-lighter">{t('navbar.about')}</span>
             </a>
           </Link>
           <hr className="dropdown-divider divider-burger" />
@@ -78,11 +73,7 @@ class Burger extends Component {
                 className="locale-link"
                 role="button"
               >
-                <img
-                  className="locale-img"
-                  src={`/images/locales/${locale}.png`}
-                  alt="locale"
-                />
+                <img className="locale-img" src={`/images/locales/${locale}.png`} alt="locale" />
               </a>
             ))}
           </div>

@@ -1,14 +1,9 @@
 import types from './actionTypes';
 
-export function setError(e) {
+export default function setError(e) {
   let errFormat = {};
 
-  if (
-    e.response &&
-    e.response.data &&
-    e.response.data.status &&
-    e.response.data.data
-  ) {
+  if (e.response && e.response.data && e.response.data.status && e.response.data.data) {
     errFormat = {
       statusCode: e.response.data.status,
       message: e.response.data.data,

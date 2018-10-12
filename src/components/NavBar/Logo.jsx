@@ -6,8 +6,8 @@ const Logo = (props, { router: { pathname } }) => (
   <Fragment>
     <Link href="/">
       <a
-        className={`navbar-item navbar-item-line navbar-item logo-twitelo ${pathname ===
-          '/' && 'navbar-item-line-active'}`}
+        className={`navbar-item navbar-item-line navbar-item logo-twitelo ${pathname === '/' &&
+          'navbar-item-line-active'}`}
       >
         <img id="menu-logo" src="/static/logo.png" alt="logo" />
         <span className="home-button has-text-weight-bold is-uppercase is-hidden-mobile">

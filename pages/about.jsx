@@ -22,6 +22,10 @@ class About extends Component {
     return { stats };
   }
 
+  componentWillUpdate() {
+    document.title = 'About - Twitelo';
+  }
+
   render() {
     const {
       stats,

@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import types from './actionTypes';
 import api from '../libs/api';
-import { setError } from './base';
+import setError from './base';
 
 export function setBuilderLoading(status) {
   return {
@@ -12,7 +12,6 @@ export function setBuilderLoading(status) {
 }
 
 export function setTwiteloDataInput(name, value) {
-  console.log(name, value);
   return {
     type: types.SET_TWITELO_DATA_INPUT,
     payload: { name, value },

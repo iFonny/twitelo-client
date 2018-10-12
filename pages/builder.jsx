@@ -8,6 +8,7 @@ import InputBuilder from '../src/components/Builder/InputBuilder';
 import Accounts from '../src/components/Builder/Accounts';
 import GameTagsList from '../src/components/Builder/GameTagsList';
 import UserTags from '../src/components/Builder/UserTags';
+import ProfilePreview from '../src/components/Builder/ProfilePreview';
 
 import auth from '../src/libs/auth';
 
@@ -48,6 +49,10 @@ class Builder extends Component {
     return {};
   }
 
+  componentWillUpdate() {
+    document.title = 'Builder - Twitelo';
+  }
+
   render() {
     return (
       <Layout>
@@ -75,6 +80,12 @@ class Builder extends Component {
             <div className="tile is-parent is-7 top-tile right-tile">
               <UserTags />
             </div>
+          </div>
+
+          <div className="tile is-ancestor">
+            <article className="tile is-parent bottom-tile">
+              <ProfilePreview />
+            </article>
           </div>
         </div>
         <style jsx>

@@ -241,9 +241,7 @@ module.exports = {
                 {
                   role: 'USER',
                   twitter_id: profile._json.id_str,
-                  twitelo_token: `${hat(16)}${profile._json.id_str}-${hat(
-                    256,
-                  )}`,
+                  twitelo_token: `${hat(16)}${profile._json.id_str}-${hat(256)}`,
                   api_key: `${hat(16)}${profile._json.id_str}-${hat(256)}`,
                   tokens: jwt.encode(
                     {
@@ -268,8 +266,7 @@ module.exports = {
                   freshUser: true,
                   disabled: 0,
                   settings: {
-                    locale:
-                      profile._json.lang.toLowerCase() == 'fr' ? 'fr' : 'en',
+                    locale: profile._json.lang.toLowerCase() == 'fr' ? 'fr' : 'en',
                     notifications: {
                       mp_twitter: true,
                     },
@@ -371,10 +368,7 @@ module.exports = {
           index: index,
         })
         .run()
-        .then(
-          user =>
-            user.length > 0 ? resolve(user[0]) : reject('User not found'),
-        )
+        .then(user => (user.length > 0 ? resolve(user[0]) : reject('User not found')))
         .catch(e => reject(e));
     });
   },

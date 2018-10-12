@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import api from '../../libs/api';
 
 import { selectAndFetchTags, createTagAndUpdate } from '../../actions/builder';
-import { setError } from '../../actions/base';
+import setError from '../../actions/base';
 
 const PaginationList = ({ total, perPage, currentPage, handlePageClick }) => {
   const pages = [];

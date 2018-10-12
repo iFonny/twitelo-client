@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import api from '../../libs/api';
 
 import { updateAccount, deleteAccount } from '../../actions/builder';
-import { setError } from '../../actions/base';
+import setError from '../../actions/base';
 
 class Accounts extends Component {
   constructor(props) {

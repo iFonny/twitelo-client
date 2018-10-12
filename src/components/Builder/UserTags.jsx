@@ -11,7 +11,7 @@ import {
   deleteTagWithIndex,
   updateTag,
 } from '../../actions/builder';
-import { setError } from '../../actions/base';
+import setError from '../../actions/base';
 
 class UserTags extends Component {
   constructor(props) {

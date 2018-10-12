@@ -34,6 +34,10 @@ class Home extends Component {
     return { gamesList, latestUsers };
   }
 
+  componentWillUpdate() {
+    document.title = 'Home - Twitelo';
+  }
+
   render() {
     const { gamesList, latestUsers } = this.props;
 
