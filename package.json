@@ -47,7 +47,10 @@
     "rethinkdbdash": "^2.3.31",
     "sass-loader": "^7.1.0",
     "session-rethinkdb": "^2.0.1",
-    "styled-jsx-css-loader": "^0.3.0"
+    "styled-jsx-css-loader": "^0.3.0",
+    "@babel/core": "^7.1.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-plugin-inline-dotenv": "^1.1.2"
   },
   "main": "server/index.js",
   "devDependencies": {
