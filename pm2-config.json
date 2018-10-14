@@ -28,7 +28,7 @@
       "ref": "origin/master",
       "repo": "git@github.com:iFonny/twitelo-client.git",
       "path": "/root/www/EpitechTwiteloApp/production/",
-      "post-deploy": "cp /root/configs/EpitechTwiteloApp/secret.json ./config/; npm install; next build; pm2 startOrRestart pm2-config.json --only twitelo-epitech-app",
+      "post-deploy": "cp /root/configs/EpitechTwiteloApp/secret.json ./config/; npm install; npm run build; pm2 startOrRestart pm2-config.json --only twitelo-epitech-app",
       "env": {
         "NODE_ENV": "production"
       }
