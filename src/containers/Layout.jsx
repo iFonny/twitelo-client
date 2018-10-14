@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setLanguage } from 'redux-i18n';
 import api from '../libs/api';
-import NavBar from '../containers/NavBar';
+import NavBar from './NavBar';
 
 class Layout extends Component {
   componentDidMount() {

@@ -2,15 +2,15 @@ import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Login from '../components/NavBar/Login';
-import Logo from '../components/NavBar/Logo';
-import Burger from '../components/NavBar/Burger';
-import About from '../components/NavBar/About';
-import Chat from '../components/NavBar/Chat';
-import Locale from '../components/NavBar/Locale';
-import User from '../components/NavBar/User';
-import Builder from '../components/NavBar/Builder';
-import SwitchToggle from '../components/NavBar/SwitchToggle';
+import Login from './NavBar/Login';
+import Logo from './NavBar/Logo';
+import Burger from './NavBar/Burger';
+import About from './NavBar/About';
+import Chat from './NavBar/Chat';
+import Locale from './NavBar/Locale';
+import User from './NavBar/User';
+import Builder from './NavBar/Builder';
+import SwitchToggle from './NavBar/SwitchToggle';
 
 class NavBar extends Component {
   constructor(props) {

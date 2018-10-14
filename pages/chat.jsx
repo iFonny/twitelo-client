@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
-import Layout from '../src/components/Layout';
+import Layout from '../src/containers/Layout';
 
 import auth from '../src/libs/auth';
 

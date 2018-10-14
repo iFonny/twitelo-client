@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Layout from '../src/components/Layout';
+import Layout from '../src/containers/Layout';
 import SiteDescription from '../src/components/Home/SiteDescription';
 
 import auth from '../src/libs/auth';

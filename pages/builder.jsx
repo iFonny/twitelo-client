@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
 
-import Layout from '../src/components/Layout';
-import GameSelect from '../src/components/Builder/GameSelect';
-import InputBuilder from '../src/components/Builder/InputBuilder';
-import Accounts from '../src/components/Builder/Accounts';
-import GameTagsList from '../src/components/Builder/GameTagsList';
-import UserTags from '../src/components/Builder/UserTags';
-import ProfilePreview from '../src/components/Builder/ProfilePreview';
+import Layout from '../src/containers/Layout';
+import GameSelect from '../src/containers/Builder/GameSelect';
+import InputBuilder from '../src/containers/Builder/InputBuilder';
+import Accounts from '../src/containers/Builder/Accounts';
+import GameTagsList from '../src/containers/Builder/GameTagsList';
+import UserTags from '../src/containers/Builder/UserTags';
+import ProfilePreview from '../src/containers/Builder/ProfilePreview';
 
 import auth from '../src/libs/auth';
 

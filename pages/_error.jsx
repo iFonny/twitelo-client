@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-import Layout from '../src/components/Layout';
+import Layout from '../src/containers/Layout';
 
 import auth from '../src/libs/auth';
 

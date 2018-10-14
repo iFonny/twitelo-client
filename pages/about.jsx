@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import api from '../src/libs/api';
-import Layout from '../src/components/Layout';
+import Layout from '../src/containers/Layout';
 
 import auth from '../src/libs/auth';
 
