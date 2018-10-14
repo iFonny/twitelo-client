@@ -68,6 +68,8 @@
   "scripts": {
     "build": "NODE_ENV=production next build",
     "start": "node server/index.js",
+    "deploy-setup": "pm2 deploy ./pm2-config.json production setup && pm2 deploy ./pm2-config.json production",
+    "deploy-update": "pm2 deploy ./pm2-config.json production update",
     "prod": "NODE_ENV=production node server/index.js",
     "clean": "rimraf node_modules/.cache .next",
     "lint": "eslint 'src/**/*.js' --fix"
